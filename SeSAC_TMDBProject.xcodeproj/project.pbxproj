@@ -18,6 +18,7 @@
 		89C86E7A2A8619E5000F1E73 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 89C86E792A8619E5000F1E73 /* Alamofire */; };
 		89C86E7D2A8619F1000F1E73 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 89C86E7C2A8619F1000F1E73 /* SwiftyJSON */; };
 		89C86E802A8619FA000F1E73 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 89C86E7F2A8619FA000F1E73 /* Kingfisher */; };
+		89C86E862A861F41000F1E73 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C86E852A861F41000F1E73 /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		89C86E6C2A861801000F1E73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89C86E722A86186D000F1E73 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		89C86E762A86197F000F1E73 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		89C86E852A861F41000F1E73 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			children = (
 				89C86E812A861A55000F1E73 /* Application */,
 				89C86E622A8617FF000F1E73 /* ViewController.swift */,
+				89C86E842A861ECF000F1E73 /* Domain */,
 				89C86E822A861A94000F1E73 /* Infrastructure */,
 				89C86E672A861801000F1E73 /* Assets.xcassets */,
 				89C86E642A8617FF000F1E73 /* Main.storyboard */,
@@ -90,9 +93,25 @@
 		89C86E822A861A94000F1E73 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				89C86E832A861EBE000F1E73 /* Services */,
 				89C86E762A86197F000F1E73 /* APIKey.swift */,
 			);
 			path = Infrastructure;
+			sourceTree = "<group>";
+		};
+		89C86E832A861EBE000F1E73 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		89C86E842A861ECF000F1E73 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				89C86E852A861F41000F1E73 /* Movie.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +200,7 @@
 				89C86E5F2A8617FF000F1E73 /* AppDelegate.swift in Sources */,
 				89C86E772A86197F000F1E73 /* APIKey.swift in Sources */,
 				89C86E612A8617FF000F1E73 /* SceneDelegate.swift in Sources */,
+				89C86E862A861F41000F1E73 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
