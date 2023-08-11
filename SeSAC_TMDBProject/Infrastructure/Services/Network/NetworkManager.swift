@@ -18,7 +18,7 @@ final class NetworkManager {
 
 extension NetworkManager {
 
-    func callResponse(api: APIURL.TMDB) {
+    func callResponse(api: APIURL.TMDB, completionHandler: @escaping (MovieList) -> ()) {
 
         let url = api.url
         let header = APIHeader.TMDB.header
@@ -27,9 +27,16 @@ extension NetworkManager {
             .validate()
             .responseJSON { response in
             switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                print("JSON: \(json)")
+            case .success:
+                guard let data = response.data else { return }
+
+                do {
+                    let movieList = try JSONDecoder().decode(MovieList.self, from: data)
+                    completionHandler(movieList)
+                } catch {
+                    print(error)
+                }
+
             case .failure(let error):
                 print(error)
             }
