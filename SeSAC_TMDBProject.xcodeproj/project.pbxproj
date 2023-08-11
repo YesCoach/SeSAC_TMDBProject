@@ -13,6 +13,8 @@
 		89C86E662A8617FF000F1E73 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89C86E642A8617FF000F1E73 /* Main.storyboard */; };
 		89C86E682A861801000F1E73 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89C86E672A861801000F1E73 /* Assets.xcassets */; };
 		89C86E6B2A861801000F1E73 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89C86E692A861801000F1E73 /* LaunchScreen.storyboard */; };
+		89C86E732A86186D000F1E73 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 89C86E722A86186D000F1E73 /* .gitignore */; };
+		89C86E772A86197F000F1E73 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C86E762A86197F000F1E73 /* APIKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		89C86E672A861801000F1E73 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		89C86E6A2A861801000F1E73 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C86E6C2A861801000F1E73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89C86E722A86186D000F1E73 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		89C86E762A86197F000F1E73 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +63,12 @@
 				89C86E5E2A8617FF000F1E73 /* AppDelegate.swift */,
 				89C86E602A8617FF000F1E73 /* SceneDelegate.swift */,
 				89C86E622A8617FF000F1E73 /* ViewController.swift */,
+				89C86E762A86197F000F1E73 /* APIKey.swift */,
 				89C86E642A8617FF000F1E73 /* Main.storyboard */,
 				89C86E672A861801000F1E73 /* Assets.xcassets */,
 				89C86E692A861801000F1E73 /* LaunchScreen.storyboard */,
 				89C86E6C2A861801000F1E73 /* Info.plist */,
+				89C86E722A86186D000F1E73 /* .gitignore */,
 			);
 			path = SeSAC_TMDBProject;
 			sourceTree = "<group>";
@@ -125,6 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C86E732A86186D000F1E73 /* .gitignore in Resources */,
 				89C86E6B2A861801000F1E73 /* LaunchScreen.storyboard in Resources */,
 				89C86E682A861801000F1E73 /* Assets.xcassets in Resources */,
 				89C86E662A8617FF000F1E73 /* Main.storyboard in Resources */,
@@ -140,6 +147,7 @@
 			files = (
 				89C86E632A8617FF000F1E73 /* ViewController.swift in Sources */,
 				89C86E5F2A8617FF000F1E73 /* AppDelegate.swift in Sources */,
+				89C86E772A86197F000F1E73 /* APIKey.swift in Sources */,
 				89C86E612A8617FF000F1E73 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
