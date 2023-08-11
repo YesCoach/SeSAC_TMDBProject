@@ -66,17 +66,33 @@
 		89C86E5D2A8617FF000F1E73 /* SeSAC_TMDBProject */ = {
 			isa = PBXGroup;
 			children = (
-				89C86E5E2A8617FF000F1E73 /* AppDelegate.swift */,
-				89C86E602A8617FF000F1E73 /* SceneDelegate.swift */,
+				89C86E812A861A55000F1E73 /* Application */,
 				89C86E622A8617FF000F1E73 /* ViewController.swift */,
-				89C86E762A86197F000F1E73 /* APIKey.swift */,
-				89C86E642A8617FF000F1E73 /* Main.storyboard */,
+				89C86E822A861A94000F1E73 /* Infrastructure */,
 				89C86E672A861801000F1E73 /* Assets.xcassets */,
+				89C86E642A8617FF000F1E73 /* Main.storyboard */,
 				89C86E692A861801000F1E73 /* LaunchScreen.storyboard */,
 				89C86E6C2A861801000F1E73 /* Info.plist */,
 				89C86E722A86186D000F1E73 /* .gitignore */,
 			);
 			path = SeSAC_TMDBProject;
+			sourceTree = "<group>";
+		};
+		89C86E812A861A55000F1E73 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				89C86E5E2A8617FF000F1E73 /* AppDelegate.swift */,
+				89C86E602A8617FF000F1E73 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		89C86E822A861A94000F1E73 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				89C86E762A86197F000F1E73 /* APIKey.swift */,
+			);
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
