@@ -19,6 +19,9 @@
 		89C86E7D2A8619F1000F1E73 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 89C86E7C2A8619F1000F1E73 /* SwiftyJSON */; };
 		89C86E802A8619FA000F1E73 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 89C86E7F2A8619FA000F1E73 /* Kingfisher */; };
 		89C86E862A861F41000F1E73 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C86E852A861F41000F1E73 /* Movie.swift */; };
+		89C86E882A8622AB000F1E73 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C86E872A8622AB000F1E73 /* NetworkManager.swift */; };
+		89C86E8B2A862300000F1E73 /* APIURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C86E8A2A862300000F1E73 /* APIURL.swift */; };
+		89C86E8D2A862BEE000F1E73 /* APIHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C86E8C2A862BED000F1E73 /* APIHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		89C86E722A86186D000F1E73 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		89C86E762A86197F000F1E73 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		89C86E852A861F41000F1E73 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		89C86E872A8622AB000F1E73 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		89C86E8A2A862300000F1E73 /* APIURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIURL.swift; sourceTree = "<group>"; };
+		89C86E8C2A862BED000F1E73 /* APIHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +108,7 @@
 		89C86E832A861EBE000F1E73 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				89C86E892A8622F3000F1E73 /* Network */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -112,6 +119,16 @@
 				89C86E852A861F41000F1E73 /* Movie.swift */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		89C86E892A8622F3000F1E73 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				89C86E872A8622AB000F1E73 /* NetworkManager.swift */,
+				89C86E8A2A862300000F1E73 /* APIURL.swift */,
+				89C86E8C2A862BED000F1E73 /* APIHeader.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,10 +213,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C86E882A8622AB000F1E73 /* NetworkManager.swift in Sources */,
 				89C86E632A8617FF000F1E73 /* ViewController.swift in Sources */,
 				89C86E5F2A8617FF000F1E73 /* AppDelegate.swift in Sources */,
 				89C86E772A86197F000F1E73 /* APIKey.swift in Sources */,
 				89C86E612A8617FF000F1E73 /* SceneDelegate.swift in Sources */,
+				89C86E8D2A862BEE000F1E73 /* APIHeader.swift in Sources */,
+				89C86E8B2A862300000F1E73 /* APIURL.swift in Sources */,
 				89C86E862A861F41000F1E73 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,7 +16,7 @@ struct Movie: Codable {
     let originalTitle: String
     let overview: String?
     let posterPath: String
-    let mediaType: String
+    let mediaType: MediaTypes?
     let genreIDs: [Int]?
     let popularity: Double
     let releaseDate: String?
@@ -39,4 +39,10 @@ extension Movie {
         case voteCount = "vote_count"
     }
 
+    enum MediaTypes: String, Codable {
+        case all
+        case movie
+        case tv
+        case person
+    }
 }
