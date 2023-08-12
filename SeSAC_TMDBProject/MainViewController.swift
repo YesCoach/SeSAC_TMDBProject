@@ -10,13 +10,15 @@ import UIKit
 final class MainViewController: UIViewController {
     @IBOutlet var leftBarButtonItem: UIBarButtonItem!
     @IBOutlet var rightBarButtonItem: UIBarButtonItem!
-
+    @IBOutlet var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationItem()
         // Do any additional setup after loading the view.
-        NetworkManager.shared.callResponse(api: .trending(media: .movie, timeWindow: .day)) {
-            print($0.results)
+
+        NetworkManager.shared.callResponse(api: .trending(media: .movie, timeWindow: .week)) { (data: MovieList) in
+            print(data)
         }
     }
 

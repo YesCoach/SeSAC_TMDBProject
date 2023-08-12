@@ -8,7 +8,6 @@
 import Foundation
 
 enum APIURL {
-
     enum TMDB {
 
         private var baseURL: String {

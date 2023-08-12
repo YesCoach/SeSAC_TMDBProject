@@ -18,7 +18,7 @@ final class NetworkManager {
 
 extension NetworkManager {
 
-    func callResponse(api: APIURL.TMDB, completionHandler: @escaping (MovieList) -> ()) {
+    func callResponse<T: Codable>(api: APIURL.TMDB, completionHandler: @escaping (T) -> ()) {
 
         let url = api.url
         let header = APIHeader.TMDB.header
@@ -31,8 +31,8 @@ extension NetworkManager {
                 guard let data = response.data else { return }
 
                 do {
-                    let movieList = try JSONDecoder().decode(MovieList.self, from: data)
-                    completionHandler(movieList)
+                    let decodedData = try JSONDecoder().decode(T.self, from: data)
+                    completionHandler(decodedData)
                 } catch {
                     print(error)
                 }
