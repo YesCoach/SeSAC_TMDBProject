@@ -44,5 +44,19 @@ extension Movie {
         case movie
         case tv
         case person
+
+        var description: String {
+            switch self {
+            case .movie: return "영화"
+            case .tv: return "TV 프로그램"
+            case .person: return "배우"
+            default: return "전체"
+            }
+        }
+    }
+
+    /// posterPath를 적용한 이미지 URL을 반환합니다.
+    var posterURL: String {
+        return "https://image.tmdb.org/t/p/original\(posterPath)"
     }
 }
