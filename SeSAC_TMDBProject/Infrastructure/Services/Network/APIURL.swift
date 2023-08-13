@@ -14,9 +14,25 @@ enum APIURL {
             return "https://api.themoviedb.org/3/"
         }
 
-        case trending(media: Movie.MediaTypes, timeWindow: TimeWindow)
+        case trending(media: MediaTypes, timeWindow: TimeWindow)
         case credit(movieID: Int)
+        case genre(media: GenreType)
     }
+}
+
+extension APIURL.TMDB {
+
+    var url: String {
+        switch self {
+        case .trending(let media, let timeWindow):
+            return baseURL + "trending/\(media.rawValue)/\(timeWindow.rawValue)"
+        case .credit(let movieID):
+            return baseURL + "movie/\(movieID)/credits"
+        case .genre(let type):
+            return baseURL + "genre/\(type.rawValue)/list"
+        }
+    }
+
 }
 
 extension APIURL.TMDB {
@@ -26,13 +42,26 @@ extension APIURL.TMDB {
         case week
     }
 
-    var url: String {
-        switch self {
-        case .trending(let media, let timeWindow):
-            return baseURL + "trending/\(media.rawValue)/\(timeWindow.rawValue)"
-        case .credit(let movieID):
-            return baseURL + "movie/\(movieID)/credits"
+
+    enum MediaTypes: String {
+        case all
+        case movie
+        case tv
+        case person
+
+        var description: String {
+            switch self {
+            case .movie: return "영화"
+            case .tv: return "TV 프로그램"
+            case .person: return "배우"
+            default: return "전체"
+            }
         }
+    }
+
+    enum GenreType: String {
+        case movie
+        case tv
     }
 
 }

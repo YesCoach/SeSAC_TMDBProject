@@ -22,6 +22,7 @@ final class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet var linkButton: UIButton!
     @IBOutlet var separatorView: UIView!
     @IBOutlet var cardView: UIView!
+    @IBOutlet var cardBackView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,15 +37,29 @@ extension MainCollectionViewCell {
 
     func configure(with data: Movie) {
         releaseDateLabel.text = data.releaseDate
-        genreLabel.text = "\(data.genreIDs?.first)"
+
+        var genre: [String] = []
+
+        NetworkManager.shared.callResponse(
+            api: .genre(media: .movie)
+        ) { [weak self] (genreList: GenreList) in
+            guard let self,
+                  let genreIDs = data.genreIDs
+            else { return }
+            genre = genreList.genres
+                .filter { genreIDs.contains($0.id) }
+                .map { $0.name }
+
+            genreLabel.text = "#" + genre.joined(separator: "#")
+        }
 
         if let url = URL(string: data.posterURL) {
             posterImageView.kf.setImage(with: url)
-
         }
+
         scoreValueLabel.text = String(format: "%.1f", data.voteAverage)
         titleLabel.text = "\(data.title)"
-        castingLabel.text = "\(data.mediaType?.rawValue)"
+        castingLabel.text = "으아아아"
     }
 }
 
@@ -59,7 +74,6 @@ private extension MainCollectionViewCell {
         genreLabel.textColor = .black
 
         posterImageView.contentMode = .scaleAspectFill
-        posterImageView.layer.cornerRadius = 10.0
 
         scoreTitleLabel.textColor = .white
         scoreTitleLabel.backgroundColor = .systemBlue
@@ -80,12 +94,15 @@ private extension MainCollectionViewCell {
         chevronButton.setImage(.init(systemName: "chevron.right"), for: .normal)
         chevronButton.tintColor = .systemGray
 
+        cardBackView.layer.cornerRadius = 10.0
+        cardBackView.layer.shadowColor = UIColor.black.cgColor
+        cardBackView.layer.shadowOffset = .zero
+        cardBackView.layer.shadowRadius = 10.0
+        cardBackView.layer.shadowOpacity = 0.5
+        cardBackView.clipsToBounds = false
+
         cardView.layer.cornerRadius = 10.0
-        cardView.layer.shadowColor = UIColor.black.cgColor
-        cardView.layer.shadowOffset = .zero
-        cardView.layer.shadowRadius = 10.0
-        cardView.layer.shadowOpacity = 0.5
-        cardView.clipsToBounds = false
+        cardView.clipsToBounds = true
     }
 
 }

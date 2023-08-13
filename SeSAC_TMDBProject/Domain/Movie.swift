@@ -16,7 +16,6 @@ struct Movie: Codable {
     let originalTitle: String
     let overview: String?
     let posterPath: String
-    let mediaType: MediaTypes?
     let genreIDs: [Int]?
     let popularity: Double
     let releaseDate: String?
@@ -32,27 +31,10 @@ extension Movie {
         case originalLanguage = "original_language"
         case originalTitle = "original_title"
         case posterPath = "poster_path"
-        case mediaType = "media_type"
         case genreIDs = "genre_ids"
         case releaseDate = "release_date"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
-    }
-
-    enum MediaTypes: String, Codable {
-        case all
-        case movie
-        case tv
-        case person
-
-        var description: String {
-            switch self {
-            case .movie: return "영화"
-            case .tv: return "TV 프로그램"
-            case .person: return "배우"
-            default: return "전체"
-            }
-        }
     }
 
     /// posterPath를 적용한 이미지 URL을 반환합니다.
