@@ -90,12 +90,12 @@
 			isa = PBXGroup;
 			children = (
 				89C86E642A8617FF000F1E73 /* Main.storyboard */,
-				89C86E622A8617FF000F1E73 /* MainViewController.swift */,
 				89C86E952A8641D3000F1E73 /* MainCollectionViewCell.xib */,
+				89F4F9622A88DAF200388FB5 /* MovieCastingTableViewCell.xib */,
+				89C86E622A8617FF000F1E73 /* MainViewController.swift */,
 				89C86E942A8641D3000F1E73 /* MainCollectionViewCell.swift */,
 				89AFDA0C2A88CE200050E9DD /* MovieCastingViewController.swift */,
 				89F4F9612A88DAF200388FB5 /* MovieCastingTableViewCell.swift */,
-				89F4F9622A88DAF200388FB5 /* MovieCastingTableViewCell.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";

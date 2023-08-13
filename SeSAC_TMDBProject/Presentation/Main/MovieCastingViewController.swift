@@ -77,10 +77,12 @@ private extension MovieCastingViewController {
         backgroundImageView.contentMode = .scaleAspectFill
 
         if let url = URL(string: movie.posterURL) {
+            thumbnailView.kf.indicatorType = .activity
             thumbnailView.kf.setImage(with: url)
         }
         if let backdropURL = movie.backdropURL,
            let url = URL(string: backdropURL) {
+            backgroundImageView.kf.indicatorType = .activity
             backgroundImageView.kf.setImage(with: url)
         }
     }
@@ -93,11 +95,14 @@ private extension MovieCastingViewController {
     }
 
     func fetchData() {
-        NetworkManager.shared.callResponse(
-            api: .credit(movieID: movie.id)
-        ) { [weak self] (data: MovieCredit) in
+        DispatchQueue.global().async { [weak self] in
             guard let self else { return }
-            castingList = data.cast
+            NetworkManager.shared.callResponse(
+                api: .credit(movieID: movie.id)
+            ) { [self] (data: MovieCredit) in
+                self.castingList = data.cast
+            }
         }
     }
+
 }

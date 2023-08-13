@@ -34,6 +34,20 @@ final class MainCollectionViewCell: UICollectionViewCell {
         configureUI()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        posterImageView.image = .init(systemName: "photo.fill")
+        scoreValueLabel.text = "0"
+        titleLabel.text = "정보 없음"
+        castingLabel.text = nil
+    }
+
+    @IBAction func didChevronButtonTouched(_ sender: Any) {
+        guard let completionHandler, let movie
+        else { return }
+        completionHandler(movie)
+    }
+
     @objc func didCardViewTouched(_ sender: UITapGestureRecognizer) {
         guard let completionHandler, let movie
         else { return }
@@ -67,6 +81,7 @@ extension MainCollectionViewCell {
         }
 
         if let url = URL(string: data.posterURL) {
+            posterImageView.kf.indicatorType = .activity
             posterImageView.kf.setImage(with: url)
         }
 

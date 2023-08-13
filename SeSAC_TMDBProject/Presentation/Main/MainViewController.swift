@@ -21,15 +21,8 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configureUI()
-
-        NetworkManager.shared.callResponse(
-            api: .trending(media: .movie, timeWindow: .week)
-        ) { [weak self] (data: MovieList) in
-            guard let self else { return }
-            movieList = data
-        }
+        fetchData()
     }
 
 }
@@ -103,6 +96,19 @@ private extension MainViewController {
     func configureNavigationItem() {
         leftBarButtonItem.image = .init(systemName: "list.bullet")
         rightBarButtonItem.image = .init(systemName: "magnifyingglass")
+        navigationController?.navigationBar.tintColor = .systemMint
+        navigationItem.backButtonTitle = ""
+    }
+
+    func fetchData() {
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+            NetworkManager.shared.callResponse(
+                api: .trending(media: .movie, timeWindow: .week)
+            ) { [self] (data: MovieList) in
+                self.movieList = data
+            }
+        }
     }
 
 }
