@@ -103,6 +103,7 @@ private extension MovieCastingViewController {
 
     func configureUI() {
         configureTableView()
+        configureNavigationItem()
 
         titleLabel.text = movie.title
         titleLabel.font = .systemFont(ofSize: 28, weight: .bold)
@@ -134,6 +135,10 @@ private extension MovieCastingViewController {
         tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 80
+    }
+
+    func configureNavigationItem() {
+        navigationItem.title = "출연/제작"
     }
 
     func fetchData() {
