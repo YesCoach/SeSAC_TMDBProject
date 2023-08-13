@@ -12,6 +12,7 @@ final class MainCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var releaseDateLabel: UILabel!
     @IBOutlet var genreLabel: UILabel!
+    @IBOutlet var genreStackView: UIStackView!
     @IBOutlet var posterImageView: UIImageView!
     @IBOutlet var scoreTitleLabel: PaddingLabel!
     @IBOutlet var scoreValueLabel: PaddingLabel!
@@ -24,18 +25,30 @@ final class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet var cardView: UIView!
     @IBOutlet var cardBackView: UIView!
 
+    private var completionHandler: ((Movie)->())?
+    private var movie: Movie?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         configureUI()
     }
+
+    @objc func didCardViewTouched(_ sender: UITapGestureRecognizer) {
+        guard let completionHandler, let movie
+        else { return }
+        completionHandler(movie)
+    }
+
 }
 
 // MARK: - Methods
 
 extension MainCollectionViewCell {
 
-    func configure(with data: Movie) {
+    func configure(with data: Movie, completion: @escaping (Movie) -> ()) {
+        movie = data
+
         releaseDateLabel.text = data.releaseDate
 
         var genre: [String] = []
@@ -60,6 +73,8 @@ extension MainCollectionViewCell {
         scoreValueLabel.text = String(format: "%.1f", data.voteAverage)
         titleLabel.text = "\(data.title)"
         castingLabel.text = "으아아아"
+
+        completionHandler = completion
     }
 }
 
@@ -103,6 +118,11 @@ private extension MainCollectionViewCell {
 
         cardView.layer.cornerRadius = 10.0
         cardView.clipsToBounds = true
+
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(didCardViewTouched))
+
+        cardBackView.addGestureRecognizer(tapGestureRecognizer)
     }
 
 }

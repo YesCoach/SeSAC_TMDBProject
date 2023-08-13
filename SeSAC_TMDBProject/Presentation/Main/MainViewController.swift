@@ -34,6 +34,7 @@ final class MainViewController: UIViewController {
 
 }
 
+// MARK: - UICollectionViewDataSource 구현부
 extension MainViewController: UICollectionViewDataSource {
 
     func collectionView(
@@ -55,7 +56,20 @@ extension MainViewController: UICollectionViewDataSource {
 
         guard let movieList else { return UICollectionViewCell() }
         let movie = movieList.results[indexPath.row]
-        cell.configure(with: movie)
+        cell.configure(with: movie) { [weak self] movie in
+            guard let self else { return }
+            guard let viewController = storyboard?.instantiateViewController(
+                identifier: MovieCastingViewController.identifier,
+                creator: { coder in
+                    let viewController = MovieCastingViewController(
+                        movie: movie,
+                        coder: coder
+                    )
+                    return viewController
+                }
+            ) else { return }
+            navigationController?.pushViewController(viewController, animated: true)
+        }
         return cell
     }
 

@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MainCollectionViewCell" customModule="SeSAC_TMDBProject" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MainCollectionViewCell" id="gTV-IL-0wX" customClass="MainCollectionViewCell" customModule="SeSAC_TMDBProject" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="578" height="558"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -100,6 +100,7 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="xCR-UC-C8T" firstAttribute="bottom" secondItem="nb0-3e-bwa" secondAttribute="bottom" id="2B8-dp-cqF"/>
                                     <constraint firstItem="BI9-3p-WX0" firstAttribute="top" secondItem="kRa-C3-Z7d" secondAttribute="top" id="4U8-9l-oMY"/>
@@ -159,6 +160,7 @@
                 <outlet property="chevronButton" destination="NAp-7V-HrO" id="eVu-5y-L80"/>
                 <outlet property="detailLabel" destination="H5I-CS-Cgf" id="72D-lU-N2j"/>
                 <outlet property="genreLabel" destination="c2v-0W-5xF" id="QVX-3I-Vbj"/>
+                <outlet property="genreStackView" destination="xQJ-wT-J6g" id="eUu-fh-WYd"/>
                 <outlet property="linkButton" destination="pxL-RR-F2O" id="dqf-Un-o3U"/>
                 <outlet property="posterImageView" destination="BI9-3p-WX0" id="Dfk-wS-fcu"/>
                 <outlet property="releaseDateLabel" destination="UfE-mn-v1O" id="snI-XL-Lpj"/>

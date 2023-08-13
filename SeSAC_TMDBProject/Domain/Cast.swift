@@ -12,13 +12,16 @@ struct Cast: Codable {
     let castID: Int
     let castName: String
     let characterName: String
-    let profilePath: String
+    let profilePath: String?
 }
 
 extension Cast {
 
-    var imageURL: String {
-        return "https://image.tmdb.org/t/p/\(profilePath)"
+    /// profilePath를 적용한 이미지 URL을 반환합니다.
+    var imageURL: String? {
+        guard let profilePath
+        else { return nil }
+        return "https://image.tmdb.org/t/p/original\(profilePath)"
     }
 
     enum CodingKeys: String, CodingKey {

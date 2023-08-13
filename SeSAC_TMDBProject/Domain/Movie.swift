@@ -41,4 +41,12 @@ extension Movie {
     var posterURL: String {
         return "https://image.tmdb.org/t/p/original\(posterPath)"
     }
+
+    var backdropURL: String? {
+        if let backdropPath {
+            return "https://image.tmdb.org/t/p/original\(backdropPath)"
+        } else {
+            return nil
+        }
+    }
 }
