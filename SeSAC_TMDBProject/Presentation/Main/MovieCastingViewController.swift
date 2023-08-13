@@ -42,8 +42,16 @@ final class MovieCastingViewController: UIViewController {
 
 extension MovieCastingViewController: UITableViewDataSource {
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return castingList.count
+        switch section {
+        case 0: return 1
+        case 1: return castingList.count
+        default: return 0
+        }
     }
 
     func tableView(
@@ -56,11 +64,24 @@ extension MovieCastingViewController: UITableViewDataSource {
         ) as? MovieCastingTableViewCell
         else { return UITableViewCell() }
 
-        let cast = castingList[indexPath.row]
+        switch indexPath.section {
+        case 0: return cell
+        case 1:
+            let cast = castingList[indexPath.row]
 
-        cell.configure(with: cast)
+            cell.configure(with: cast)
 
-        return cell
+            return cell
+        default: return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0: return "OverView"
+        case 1: return "Cast"
+        default: return ""
+        }
     }
 }
 
