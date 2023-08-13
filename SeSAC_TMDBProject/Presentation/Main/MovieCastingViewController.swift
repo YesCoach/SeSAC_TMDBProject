@@ -58,21 +58,34 @@ extension MovieCastingViewController: UITableViewDataSource {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: MovieCastingTableViewCell.identifier,
-            for: indexPath
-        ) as? MovieCastingTableViewCell
-        else { return UITableViewCell() }
-
         switch indexPath.section {
-        case 0: return cell
-        case 1:
-            let cast = castingList[indexPath.row]
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: MovieOverviewTableViewCell.identifier,
+                for: indexPath
+            ) as? MovieOverviewTableViewCell
+            else { return UITableViewCell() }
 
+            cell.configure(with: movie.overview ?? "") {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    tableView.reloadData()
+                }
+            }
+
+            return cell
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: MovieCastingTableViewCell.identifier,
+                for: indexPath
+            ) as? MovieCastingTableViewCell
+            else { return UITableViewCell() }
+
+            let cast = castingList[indexPath.row]
             cell.configure(with: cast)
 
             return cell
-        default: return cell
+        default: return UITableViewCell()
         }
     }
 
@@ -83,6 +96,7 @@ extension MovieCastingViewController: UITableViewDataSource {
         default: return ""
         }
     }
+
 }
 
 private extension MovieCastingViewController {
@@ -109,10 +123,17 @@ private extension MovieCastingViewController {
     }
 
     func configureTableView() {
-        let nib = UINib(nibName: MovieCastingTableViewCell.identifier, bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: MovieCastingTableViewCell.identifier)
+        tableView.register(
+            UINib(nibName: MovieCastingTableViewCell.identifier, bundle: nil),
+            forCellReuseIdentifier: MovieCastingTableViewCell.identifier
+        )
+        tableView.register(
+            UINib(nibName: MovieOverviewTableViewCell.identifier, bundle: nil),
+            forCellReuseIdentifier: MovieOverviewTableViewCell.identifier
+        )
         tableView.dataSource = self
-        tableView.rowHeight = 80.0
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 80
     }
 
     func fetchData() {

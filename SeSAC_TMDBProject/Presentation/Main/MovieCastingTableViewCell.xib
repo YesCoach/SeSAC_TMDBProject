@@ -12,27 +12,28 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieCastingTableViewCell" rowHeight="119" id="KGk-i7-Jjw" customClass="MovieCastingTableViewCell" customModule="SeSAC_TMDBProject" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="435" height="119"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="435" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ra1-SB-5B8">
-                        <rect key="frame" x="20" y="10" width="76" height="99"/>
+                        <rect key="frame" x="19.999999999999996" y="10" width="61.666666666666657" height="80"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="80" id="MTp-7E-efc"/>
                             <constraint firstAttribute="width" secondItem="ra1-SB-5B8" secondAttribute="height" multiplier="1:1.3" id="vbg-5I-wvN"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="iFP-Nm-IoW">
-                        <rect key="frame" x="116" y="20" width="299" height="79"/>
+                        <rect key="frame" x="101.66666666666666" y="20" width="313.33333333333337" height="60"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3B3-mG-TVM">
-                                <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="39.666666666666664"/>
+                                <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nwq-PW-jvB">
-                                <rect key="frame" x="0.0" y="39.666666666666657" width="41.333333333333336" height="39.333333333333343"/>
+                                <rect key="frame" x="0.0" y="30" width="41.333333333333336" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
