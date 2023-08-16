@@ -65,8 +65,6 @@ extension MainCollectionViewCell {
 
         releaseDateLabel.text = data.releaseDate
 
-        var genre: [String] = []
-
         if data.mediaType == .movie {
             let genreList = data.genreIDs.map { GenreList.movie[$0] }.compactMap { $0 }
             self.genreLabel.text = "#" + genreList.joined(separator: "#")

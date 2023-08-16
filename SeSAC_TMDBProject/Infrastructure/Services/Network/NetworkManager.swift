@@ -27,6 +27,7 @@ extension NetworkManager {
             .validate(statusCode: 200...299)
             .responseDecodable(of: T.self) { response in
                 guard let value = response.value else { return }
+                dump(value)
                 completionHandler(value)
             }
     }

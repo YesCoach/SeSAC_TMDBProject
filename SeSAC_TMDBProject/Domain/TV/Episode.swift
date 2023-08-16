@@ -1,5 +1,5 @@
 //
-//  EpisodeDetail.swift
+//  Episode.swift
 //  SeSAC_TMDBProject
 //
 //  Created by 박태현 on 2023/08/16.
@@ -7,42 +7,21 @@
 
 import Foundation
 
-// MARK: - EpisodeResponse
-
-struct EpisodeResponse: Codable {
-    let id, airDate: String
-    let episodes: [Episode]
-    let name, overview: String
-    let welcomeID: Int
-    let posterPath: String
-    let seasonNumber: Int
-    let voteAverage: Double
-
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
-        case airDate = "air_date"
-        case episodes, name, overview
-        case welcomeID = "id"
-        case posterPath = "poster_path"
-        case seasonNumber = "season_number"
-        case voteAverage = "vote_average"
-    }
-}
-
 // MARK: - Episode
 
 struct Episode: Codable {
     let airDate: String
     let episodeNumber: Int
-    let episodeType: EpisodeType
+    let episodeType: String
     let id: Int
-    let name, overview, productionCode: String
+    let name: String
+    let overview: String
+    let productionCode: String
     let runtime: Int?
     let seasonNumber, showID: Int
     let stillPath: String?
-    let voteAverage: Double
-    let voteCount: Int
-    let crew, guestStars: [Crew]
+    let voteAverage, voteCount: Int
+    let crew: [Crew]
 
     enum CodingKeys: String, CodingKey {
         case airDate = "air_date"
@@ -57,20 +36,13 @@ struct Episode: Codable {
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
         case crew
-        case guestStars = "guest_stars"
-    }
-
-    enum EpisodeType: String, Codable {
-        case finale = "finale"
-        case standard = "standard"
     }
 }
 
 // MARK: - Crew
-
 struct Crew: Codable {
-    let job: String?
-    let department: Department?
+    let job: Job
+    let department: Department
     let creditID: String
     let adult: Bool
     let gender, id: Int
@@ -78,8 +50,6 @@ struct Crew: Codable {
     let name, originalName: String
     let popularity: Double
     let profilePath: String?
-    let character: String?
-    let order: Int?
 
     enum CodingKeys: String, CodingKey {
         case job, department
@@ -90,13 +60,15 @@ struct Crew: Codable {
         case originalName = "original_name"
         case popularity
         case profilePath = "profile_path"
-        case character, order
     }
+}
 
+enum Department: String, Codable {
+    case directing = "Directing"
+    case writing = "Writing"
+}
 
-    enum Department: String, Codable {
-        case acting = "Acting"
-        case directing = "Directing"
-        case writing = "Writing"
-    }
+enum Job: String, Codable {
+    case director = "Director"
+    case screenplay = "Screenplay"
 }
