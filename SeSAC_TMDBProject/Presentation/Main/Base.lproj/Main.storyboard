@@ -48,13 +48,26 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZEq-At-pb9">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" id="6fe-Ln-9LU"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="tJh-gV-Us7">
+                            <rect key="frame" x="131" y="6" width="131" height="32"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="First"/>
+                                <segment title="Second"/>
+                            </segments>
+                            <connections>
+                                <action selector="didSegmentValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="RxP-x2-byh"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="ysd-hq-FSN"/>
                     </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="06H-P0-2tp" id="ZDJ-ry-jSN"/>
                         <outlet property="leftBarButtonItem" destination="6fe-Ln-9LU" id="ouy-72-aYi"/>
                         <outlet property="rightBarButtonItem" destination="ysd-hq-FSN" id="mVi-t2-QOX"/>
+                        <outlet property="segmentControl" destination="tJh-gV-Us7" id="Sv8-9D-vXo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

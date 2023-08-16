@@ -25,8 +25,8 @@ final class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet var cardView: UIView!
     @IBOutlet var cardBackView: UIView!
 
-    private var completionHandler: ((Movie)->())?
-    private var movie: Movie?
+    private var completionHandler: ((Media)->())?
+    private var media: Media?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -43,15 +43,15 @@ final class MainCollectionViewCell: UICollectionViewCell {
     }
 
     @IBAction func didChevronButtonTouched(_ sender: Any) {
-        guard let completionHandler, let movie
+        guard let completionHandler, let media
         else { return }
-        completionHandler(movie)
+        completionHandler(media)
     }
 
     @objc func didCardViewTouched(_ sender: UITapGestureRecognizer) {
-        guard let completionHandler, let movie
+        guard let completionHandler, let media
         else { return }
-        completionHandler(movie)
+        completionHandler(media)
     }
 
 }
@@ -60,8 +60,8 @@ final class MainCollectionViewCell: UICollectionViewCell {
 
 extension MainCollectionViewCell {
 
-    func configure(with data: Movie, completion: @escaping (Movie) -> ()) {
-        movie = data
+    func configure(with data: Media, completion: @escaping (Media) -> ()) {
+        media = data
 
         releaseDateLabel.text = data.releaseDate
 
@@ -72,10 +72,8 @@ extension MainCollectionViewCell {
             NetworkManager.shared.callResponse(
                 api: .genre(media: .movie)
             ) { [self] (genreList: GenreList) in
-                guard let genreIDs = data.genreIDs
-                else { return }
                 genre = genreList.genres
-                    .filter { genreIDs.contains($0.id) }
+                    .filter { data.genreIDs.contains($0.id) }
                     .map { $0.name }
 
                 self.genreLabel.text = "#" + genre.joined(separator: "#")

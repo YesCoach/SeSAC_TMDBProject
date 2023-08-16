@@ -8,7 +8,10 @@
 import Foundation
 
 // MARK: - TVResult
+
+// TODO: - MovieResult랑 TVResult이 같은 타입을 채택하게 할 수 없을까? Polymolphism ?
 struct TVResult: Codable {
+
     let page: Int
     let results: [TV]
     let totalPages, totalResults: Int
@@ -21,47 +24,51 @@ struct TVResult: Codable {
 }
 
 // MARK: - TV
-struct TV: Codable {
+struct TV: Media {
+
+
+
+    let id: Int
     let adult: Bool
     let backdropPath: String
-    let id: Int
-    let name: String
-    let originalLanguage: OriginalLanguage
-    let originalName, overview, posterPath: String
-    let mediaType: MediaType
-    let genreIDS: [Int]
+    let title: String
+    let originalLanguage: String
+    let originalTitle, overview, posterPath: String
+    let genreIDs: [Int]
     let popularity: Double
-    let firstAirDate: String
+    let releaseDate: String
     let voteAverage: Double
     let voteCount: Int
     let originCountry: [String]
 
+
+
+}
+
+extension TV {
+
     enum CodingKeys: String, CodingKey {
         case adult
         case backdropPath = "backdrop_path"
-        case id, name
+        case id
+        case title = "name"
         case originalLanguage = "original_language"
-        case originalName = "original_name"
+        case originalTitle = "original_name"
         case overview
         case posterPath = "poster_path"
-        case mediaType = "media_type"
-        case genreIDS = "genre_ids"
+        case genreIDs = "genre_ids"
         case popularity
-        case firstAirDate = "first_air_date"
+        case releaseDate = "first_air_date"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
         case originCountry = "origin_country"
     }
 
-    enum MediaType: String, Codable {
-        case tv = "tv"
+    var posterURL: String {
+        return "https://image.tmdb.org/t/p/original\(posterPath)"
     }
 
-    enum OriginalLanguage: String, Codable {
-        case en = "en"
-        case ja = "ja"
-        case ko = "ko"
-        case zh = "zh"
+    var backdropURL: String {
+        return "https://image.tmdb.org/t/p/original\(backdropPath)"
     }
-
 }

@@ -115,8 +115,7 @@ private extension MovieCastingViewController {
             thumbnailView.kf.indicatorType = .activity
             thumbnailView.kf.setImage(with: url)
         }
-        if let backdropURL = movie.backdropURL,
-           let url = URL(string: backdropURL) {
+        if let url = URL(string: movie.backdropURL) {
             backgroundImageView.kf.indicatorType = .activity
             backgroundImageView.kf.setImage(with: url)
         }

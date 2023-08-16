@@ -12,17 +12,24 @@ final class MainViewController: UIViewController {
     @IBOutlet var leftBarButtonItem: UIBarButtonItem!
     @IBOutlet var rightBarButtonItem: UIBarButtonItem!
     @IBOutlet var collectionView: UICollectionView!
+    @IBOutlet var segmentControl: UISegmentedControl!
 
-    private var movieList: MovieList? {
+    private var mediaList: [Media] = [] {
         didSet {
             collectionView.reloadData()
         }
     }
 
+    private let mediaTypes = [APIURL.TMDB.MediaType.movie, .tv]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        fetchData()
+        fetchData(media: .movie)
+    }
+
+    @IBAction func didSegmentValueChanged(_ sender: UISegmentedControl) {
+        fetchData(media: mediaTypes[sender.selectedSegmentIndex])
     }
 
 }
@@ -34,7 +41,7 @@ extension MainViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return movieList?.results.count ?? 0
+        return mediaList.count
     }
 
     func collectionView(
@@ -47,23 +54,41 @@ extension MainViewController: UICollectionViewDataSource {
         ) as? MainCollectionViewCell
         else { return UICollectionViewCell() }
 
-        guard let movieList else { return UICollectionViewCell() }
-        let movie = movieList.results[indexPath.row]
-        cell.configure(with: movie) { [weak self] movie in
-            guard let self else { return }
-            guard let viewController = storyboard?.instantiateViewController(
-                identifier: MovieCastingViewController.identifier,
-                creator: { coder in
-                    let viewController = MovieCastingViewController(
-                        movie: movie,
-                        coder: coder
-                    )
-                    return viewController
-                }
-            ) else { return }
-            navigationController?.pushViewController(viewController, animated: true)
+        let media = mediaList[indexPath.row]
+
+        if segmentControl.selectedSegmentIndex == 0 {
+            cell.configure(with: media) { [weak self] media in
+                guard let self, let movie = media as? Movie else { return }
+                guard let viewController = storyboard?.instantiateViewController(
+                    identifier: MovieCastingViewController.identifier,
+                    creator: { coder in
+                        let viewController = MovieCastingViewController(
+                            movie: movie,
+                            coder: coder
+                        )
+                        return viewController
+                    }
+                ) else { return }
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+            return cell
+        } else {
+            cell.configure(with: media) { [weak self] media in
+                guard let self, let movie = media as? Movie else { return }
+                guard let viewController = storyboard?.instantiateViewController(
+                    identifier: MovieCastingViewController.identifier,
+                    creator: { coder in
+                        let viewController = MovieCastingViewController(
+                            movie: movie,
+                            coder: coder
+                        )
+                        return viewController
+                    }
+                ) else { return }
+                navigationController?.pushViewController(viewController, animated: true)
+            }
+            return cell
         }
-        return cell
     }
 
 }
@@ -73,6 +98,10 @@ private extension MainViewController {
     func configureUI() {
         configureCollectionView()
         configureNavigationItem()
+        for item in mediaTypes.enumerated() {
+            segmentControl.setTitle(item.element.description, forSegmentAt: item.offset)
+        }
+        segmentControl.sizeToFit()
     }
 
     func configureCollectionView() {
@@ -100,15 +129,27 @@ private extension MainViewController {
         navigationItem.backButtonTitle = ""
     }
 
-    func fetchData() {
-        DispatchQueue.global().async { [weak self] in
-            guard let self else { return }
-            NetworkManager.shared.callResponse(
-                api: .trending(media: .movie, timeWindow: .week)
-            ) { [self] (data: MovieList) in
-                self.movieList = data
+    func fetchData(media: APIURL.TMDB.MediaType) {
+        if media == .movie {
+            DispatchQueue.global().async { [weak self] in
+                guard let self else { return }
+                NetworkManager.shared.callResponse(
+                    api: .trending(media: media, timeWindow: .week)
+                ) { [self] (data: MovieList) in
+                    self.mediaList = data.results
+                }
+            }
+        } else {
+            DispatchQueue.global().async { [weak self] in
+                guard let self else { return }
+                NetworkManager.shared.callResponse(
+                    api: .trending(media: media, timeWindow: .week)
+                ) { [self] (data: TVResult) in
+                    self.mediaList = data.results
+                }
             }
         }
+
     }
 
 }

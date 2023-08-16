@@ -7,18 +7,18 @@
 
 import Foundation
 
-struct Movie: Codable {
+struct Movie: Media {
     let id: Int
-    let title: String
     let adult: Bool
-    let backdropPath: String?
+    let title: String
+    let backdropPath: String
     let originalLanguage: String
     let originalTitle: String
-    let overview: String?
+    let overview: String
     let posterPath: String
-    let genreIDs: [Int]?
+    let genreIDs: [Int]
     let popularity: Double
-    let releaseDate: String?
+    let releaseDate: String
     let voteAverage: Double
     let voteCount: Int
 }
@@ -42,11 +42,7 @@ extension Movie {
         return "https://image.tmdb.org/t/p/original\(posterPath)"
     }
 
-    var backdropURL: String? {
-        if let backdropPath {
-            return "https://image.tmdb.org/t/p/original\(backdropPath)"
-        } else {
-            return nil
-        }
+    var backdropURL: String {
+        return "https://image.tmdb.org/t/p/original\(backdropPath)"
     }
 }

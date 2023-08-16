@@ -11,7 +11,7 @@ enum APIURL {
 
     enum TMDB {
         // MARK: - API
-        case trending(media: MediaTypes, timeWindow: TimeWindow)
+        case trending(media: MediaType, timeWindow: TimeWindow)
 
         // MARK: - Movie
         case credit(movieID: Int)
@@ -38,7 +38,7 @@ extension APIURL.TMDB {
         case week
     }
 
-    enum MediaTypes: String {
+    enum MediaType: String {
         case all
         case movie
         case tv
