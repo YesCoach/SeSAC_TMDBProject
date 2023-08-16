@@ -23,3 +23,8 @@ struct Genre: Codable {
         case id, name
     }
 }
+
+extension GenreList {
+    static var movie: [Int: String] = [:]
+    static var tv: [Int: String] = [:]
+}

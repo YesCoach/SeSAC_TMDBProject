@@ -14,6 +14,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+
+        NetworkManager.shared.callResponse(api: .genre(media: .movie)) { (list: GenreList) in
+            list.genres.forEach {
+                GenreList.movie[$0.id] = $0.name
+            }
+        }
+        NetworkManager.shared.callResponse(api: .genre(media: .tv)) { (list: GenreList) in
+            list.genres.forEach {
+                GenreList.tv[$0.id] = $0.name
+            }
+        }
+
         return true
     }
 

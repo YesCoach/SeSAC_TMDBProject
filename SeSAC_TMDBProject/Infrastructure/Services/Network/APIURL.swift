@@ -38,7 +38,7 @@ extension APIURL.TMDB {
         case week
     }
 
-    enum MediaType: String {
+    enum MediaType: String, Codable {
         case all
         case movie
         case tv

@@ -40,8 +40,7 @@ struct TV: Media {
     let voteAverage: Double
     let voteCount: Int
     let originCountry: [String]
-
-
+    let mediaType: APIURL.TMDB.MediaType
 
 }
 
@@ -62,6 +61,7 @@ extension TV {
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
         case originCountry = "origin_country"
+        case mediaType = "media_type"
     }
 
     var posterURL: String {

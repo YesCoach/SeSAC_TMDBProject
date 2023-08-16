@@ -21,6 +21,7 @@ struct Movie: Media {
     let releaseDate: String
     let voteAverage: Double
     let voteCount: Int
+    let mediaType: APIURL.TMDB.MediaType
 }
 
 extension Movie {
@@ -35,6 +36,7 @@ extension Movie {
         case releaseDate = "release_date"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+        case mediaType = "media_type"
     }
 
     /// posterPath를 적용한 이미지 URL을 반환합니다.

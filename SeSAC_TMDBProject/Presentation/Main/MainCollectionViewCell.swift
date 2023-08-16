@@ -67,17 +67,12 @@ extension MainCollectionViewCell {
 
         var genre: [String] = []
 
-        DispatchQueue.global().async { [weak self] in
-            guard let self else { return }
-            NetworkManager.shared.callResponse(
-                api: .genre(media: .movie)
-            ) { [self] (genreList: GenreList) in
-                genre = genreList.genres
-                    .filter { data.genreIDs.contains($0.id) }
-                    .map { $0.name }
-
-                self.genreLabel.text = "#" + genre.joined(separator: "#")
-            }
+        if data.mediaType == .movie {
+            let genreList = data.genreIDs.map { GenreList.movie[$0] }.compactMap { $0 }
+            self.genreLabel.text = "#" + genreList.joined(separator: "#")
+        } else {
+            let genreList = data.genreIDs.map { GenreList.tv[$0] }.compactMap { $0 }
+            self.genreLabel.text = "#" + genreList.joined(separator: "#")
         }
 
         if let url = URL(string: data.posterURL) {

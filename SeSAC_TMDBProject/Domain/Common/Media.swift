@@ -21,6 +21,7 @@ protocol Media: Codable {
     var releaseDate: String { get }
     var voteAverage: Double { get }
     var voteCount: Int { get }
+    var mediaType: APIURL.TMDB.MediaType { get }
 
     var posterURL: String { get }
     var backdropURL: String { get }
