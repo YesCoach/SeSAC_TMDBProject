@@ -8,14 +8,19 @@
 import Foundation
 
 enum APIURL {
+
     enum TMDB {
-
-        private var baseURL: String {
-            return "https://api.themoviedb.org/3/"
-        }
-
+        // MARK: - API
         case trending(media: MediaTypes, timeWindow: TimeWindow)
+
+        // MARK: - Movie
         case credit(movieID: Int)
+
+        // MARK: - TV
+        case seasonsDetails(seriesID: Int, seasonNumber: Int)
+        case episodesDetails(seriesID: Int, seasonNumber: Int, episodeNumber: Int)
+
+        // MARK: - Genre
         case genre(media: GenreType)
     }
 
@@ -28,26 +33,10 @@ enum APIURL {
 
 extension APIURL.TMDB {
 
-    var url: String {
-        switch self {
-        case .trending(let media, let timeWindow):
-            return baseURL + "trending/\(media.rawValue)/\(timeWindow.rawValue)?language=\(APIURL.Language.jn.rawValue)"
-        case .credit(let movieID):
-            return baseURL + "movie/\(movieID)/credits"
-        case .genre(let type):
-            return baseURL + "genre/\(type.rawValue)/list?language=\(APIURL.Language.jn.rawValue)"
-        }
-    }
-
-}
-
-extension APIURL.TMDB {
-
     enum TimeWindow: String {
         case day
         case week
     }
-
 
     enum MediaTypes: String {
         case all
@@ -70,4 +59,34 @@ extension APIURL.TMDB {
         case tv
     }
 
+    private var baseURL: String {
+        return "https://api.themoviedb.org/3/"
+    }
+
+    private var languageQuery: String {
+        return "?language=\(APIURL.Language.ko.rawValue)"
+    }
+
+
+    var url: String {
+        switch self {
+        // MARK: - Trend
+        case .trending(let media, let timeWindow):
+            return baseURL + "trending/\(media.rawValue)/\(timeWindow.rawValue)\(languageQuery)"
+
+        // MARK: - Movie
+        case .credit(let movieID):
+            return baseURL + "movie/\(movieID)/credits"
+
+        // MARK: - TV
+        case .seasonsDetails(let seriesID, let seasonNumber):
+            return baseURL + "tv/\(seriesID)/season/\(seasonNumber)"
+        case .episodesDetails(let seriesID, let seasonNumber, let episodeNumber):
+            return baseURL + "tv/\(seriesID)/season/\(seasonNumber)/episode/\(episodeNumber)"
+
+        // MARK: - Genre
+        case .genre(let type):
+            return baseURL + "genre/\(type.rawValue)/list\(languageQuery)"
+        }
+    }
 }
