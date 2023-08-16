@@ -24,23 +24,11 @@ extension NetworkManager {
         let header = APIHeader.TMDB.header
 
         AF.request(url, method: .get, headers: header)
-            .validate()
-            .responseJSON { response in
-            switch response.result {
-            case .success:
-                guard let data = response.data else { return }
-
-                do {
-                    let decodedData = try JSONDecoder().decode(T.self, from: data)
-                    completionHandler(decodedData)
-                } catch {
-                    print(error)
-                }
-
-            case .failure(let error):
-                print(error)
+            .validate(statusCode: 200...299)
+            .responseDecodable(of: T.self) { response in
+                guard let value = response.value else { return }
+                completionHandler(value)
             }
-        }
-
     }
+
 }
