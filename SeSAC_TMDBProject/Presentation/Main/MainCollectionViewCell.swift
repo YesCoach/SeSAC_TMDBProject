@@ -67,22 +67,27 @@ extension MainCollectionViewCell {
 
         var genre: [String] = []
 
-        NetworkManager.shared.callResponse(
-            api: .genre(media: .movie)
-        ) { [weak self] (genreList: GenreList) in
-            guard let self,
-                  let genreIDs = data.genreIDs
-            else { return }
-            genre = genreList.genres
-                .filter { genreIDs.contains($0.id) }
-                .map { $0.name }
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+            NetworkManager.shared.callResponse(
+                api: .genre(media: .movie)
+            ) { [self] (genreList: GenreList) in
+                guard let genreIDs = data.genreIDs
+                else { return }
+                genre = genreList.genres
+                    .filter { genreIDs.contains($0.id) }
+                    .map { $0.name }
 
-            genreLabel.text = "#" + genre.joined(separator: "#")
+                self.genreLabel.text = "#" + genre.joined(separator: "#")
+            }
         }
 
         if let url = URL(string: data.posterURL) {
             posterImageView.kf.indicatorType = .activity
-            posterImageView.kf.setImage(with: url)
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                posterImageView.kf.setImage(with: url)
+            }
         }
 
         scoreValueLabel.text = String(format: "%.1f", data.voteAverage)

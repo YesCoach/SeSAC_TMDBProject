@@ -18,6 +18,12 @@ enum APIURL {
         case credit(movieID: Int)
         case genre(media: GenreType)
     }
+
+    enum Language: String {
+        case ko = "ko-KR"
+        case en = "en-US"
+        case jn = "jn-JP"
+    }
 }
 
 extension APIURL.TMDB {
@@ -25,11 +31,11 @@ extension APIURL.TMDB {
     var url: String {
         switch self {
         case .trending(let media, let timeWindow):
-            return baseURL + "trending/\(media.rawValue)/\(timeWindow.rawValue)"
+            return baseURL + "trending/\(media.rawValue)/\(timeWindow.rawValue)?language=\(APIURL.Language.jn.rawValue)"
         case .credit(let movieID):
             return baseURL + "movie/\(movieID)/credits"
         case .genre(let type):
-            return baseURL + "genre/\(type.rawValue)/list"
+            return baseURL + "genre/\(type.rawValue)/list?language=\(APIURL.Language.jn.rawValue)"
         }
     }
 

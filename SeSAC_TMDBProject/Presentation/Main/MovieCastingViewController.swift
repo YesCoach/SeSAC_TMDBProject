@@ -67,8 +67,7 @@ extension MovieCastingViewController: UITableViewDataSource {
             else { return UITableViewCell() }
 
             cell.configure(with: movie.overview ?? "") {
-                DispatchQueue.main.async { [weak self] in
-                    guard let self else { return }
+                DispatchQueue.main.async {
                     tableView.reloadData()
                 }
             }
