@@ -58,12 +58,12 @@ extension MainViewController: UICollectionViewDataSource {
 
         if segmentControl.selectedSegmentIndex == 0 {
             cell.configure(with: media) { [weak self] media in
-                guard let self, let movie = media as? Movie else { return }
+                guard let self else { return }
                 guard let viewController = storyboard?.instantiateViewController(
                     identifier: MovieCastingViewController.identifier,
                     creator: { coder in
                         let viewController = MovieCastingViewController(
-                            movie: movie,
+                            media: media,
                             coder: coder
                         )
                         return viewController
@@ -74,12 +74,12 @@ extension MainViewController: UICollectionViewDataSource {
             return cell
         } else {
             cell.configure(with: media) { [weak self] media in
-                guard let self, let movie = media as? Movie else { return }
+                guard let self else { return }
                 guard let viewController = storyboard?.instantiateViewController(
                     identifier: MovieCastingViewController.identifier,
                     creator: { coder in
                         let viewController = MovieCastingViewController(
-                            movie: movie,
+                            media: media,
                             coder: coder
                         )
                         return viewController
@@ -98,10 +98,12 @@ private extension MainViewController {
     func configureUI() {
         configureCollectionView()
         configureNavigationItem()
+
         for item in mediaTypes.enumerated() {
             segmentControl.setTitle(item.element.description, forSegmentAt: item.offset)
         }
         segmentControl.sizeToFit()
+
     }
 
     func configureCollectionView() {
@@ -135,7 +137,7 @@ private extension MainViewController {
                 guard let self else { return }
                 NetworkManager.shared.callResponse(
                     api: .trending(media: media, timeWindow: .week)
-                ) { [self] (data: MovieList) in
+                ) { [self] (data: MovieResult) in
                     self.mediaList = data.results
                 }
             }

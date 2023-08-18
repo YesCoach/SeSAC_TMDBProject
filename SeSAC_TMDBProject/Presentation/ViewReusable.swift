@@ -12,14 +12,11 @@ protocol ViewReusable: AnyObject {
 }
 
 
-extension UIViewController: ViewReusable {
-    static var identifier: String { return String(describing: self) }
-}
+extension UIViewController: ViewReusable { }
+extension UICollectionViewCell: ViewReusable { }
+extension UITableViewCell: ViewReusable { }
+extension UICollectionReusableView: ViewReusable { }
 
-extension UICollectionViewCell: ViewReusable {
-    static var identifier: String { return String(describing: self) }
-}
-
-extension UITableViewCell: ViewReusable {
+extension ViewReusable {
     static var identifier: String { return String(describing: self) }
 }

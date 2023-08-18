@@ -14,9 +14,11 @@ enum APIURL {
         case trending(media: MediaType, timeWindow: TimeWindow)
 
         // MARK: - Movie
-        case credit(movieID: Int)
+        case movieCredit(movieID: Int)
 
         // MARK: - TV
+        case tvCredit(seriesID: Int)
+        case tvDetail(seriesID: Int)
         case seasonsDetails(seriesID: Int, seasonNumber: Int)
         case episodesDetails(seriesID: Int, seasonNumber: Int, episodeNumber: Int)
 
@@ -54,7 +56,7 @@ extension APIURL.TMDB {
         }
     }
 
-    enum GenreType: String {
+    enum GenreType: String, Codable {
         case movie
         case tv
     }
@@ -75,10 +77,14 @@ extension APIURL.TMDB {
             return baseURL + "trending/\(media.rawValue)/\(timeWindow.rawValue)\(languageQuery)"
 
         // MARK: - Movie
-        case .credit(let movieID):
+        case .movieCredit(let movieID):
             return baseURL + "movie/\(movieID)/credits"
 
         // MARK: - TV
+        case .tvCredit(let seriesID):
+            return baseURL + "tv/\(seriesID)/credits"
+        case .tvDetail(let seriesID):
+            return baseURL + "tv/\(seriesID)\(languageQuery)"
         case .seasonsDetails(let seriesID, let seasonNumber):
             return baseURL + "tv/\(seriesID)/season/\(seasonNumber)"
         case .episodesDetails(let seriesID, let seasonNumber, let episodeNumber):

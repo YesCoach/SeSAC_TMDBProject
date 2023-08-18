@@ -7,15 +7,36 @@
 
 import Foundation
 
+// MARK: - MovieResult
+
+struct MovieResult: MediaResult {
+    let page: Int
+    let results: [Movie]
+    let totalPages: Int
+    let totalResults: Int
+}
+
+extension MovieResult {
+
+    enum CodingKeys: String, CodingKey {
+        case page, results
+        case totalPages = "total_pages"
+        case totalResults = "total_results"
+    }
+
+}
+
+// MARK: - Movie
+
 struct Movie: Media {
     let id: Int
     let adult: Bool
     let title: String
-    let backdropPath: String
-    let originalLanguage: String
     let originalTitle: String
+    let originalLanguage: String
     let overview: String
     let posterPath: String
+    let backdropPath: String
     let genreIDs: [Int]
     let popularity: Double
     let releaseDate: String
@@ -37,14 +58,5 @@ extension Movie {
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
         case mediaType = "media_type"
-    }
-
-    /// posterPath를 적용한 이미지 URL을 반환합니다.
-    var posterURL: String {
-        return "https://image.tmdb.org/t/p/original\(posterPath)"
-    }
-
-    var backdropURL: String {
-        return "https://image.tmdb.org/t/p/original\(backdropPath)"
     }
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MediaSeriesCollectionViewCell" id="gTV-IL-0wX" customClass="MediaSeriesCollectionViewCell" customModule="SeSAC_TMDBProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="523" height="226"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="523" height="226"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bMs-zc-a9z">
+                        <rect key="frame" x="16" y="16" width="346" height="173"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="bMs-zc-a9z" secondAttribute="height" multiplier="2:1" id="asC-cu-kVo"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcb-j5-RrY">
+                        <rect key="frame" x="378" y="81.666666666666671" width="129" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADa-bA-GaQ">
+                        <rect key="frame" x="16" y="197" width="491" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oy9-px-jsa">
+                        <rect key="frame" x="378" y="102.66666666666667" width="129" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="Vcb-j5-RrY" firstAttribute="leading" secondItem="bMs-zc-a9z" secondAttribute="trailing" constant="16" id="469-ue-lsJ"/>
+                <constraint firstAttribute="trailing" secondItem="Vcb-j5-RrY" secondAttribute="trailing" constant="16" id="579-WE-Xn4"/>
+                <constraint firstItem="bMs-zc-a9z" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="A9c-Dw-5Od"/>
+                <constraint firstItem="oy9-px-jsa" firstAttribute="trailing" secondItem="Vcb-j5-RrY" secondAttribute="trailing" id="AEP-O9-Puu"/>
+                <constraint firstItem="Vcb-j5-RrY" firstAttribute="bottom" secondItem="bMs-zc-a9z" secondAttribute="centerY" id="LfF-ke-hCx"/>
+                <constraint firstItem="bMs-zc-a9z" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="Mf9-ZV-6vK"/>
+                <constraint firstItem="oy9-px-jsa" firstAttribute="leading" secondItem="Vcb-j5-RrY" secondAttribute="leading" id="OVc-mF-uvE"/>
+                <constraint firstItem="ADa-bA-GaQ" firstAttribute="top" secondItem="bMs-zc-a9z" secondAttribute="bottom" constant="8" id="SXN-Ww-rbA"/>
+                <constraint firstAttribute="trailing" secondItem="ADa-bA-GaQ" secondAttribute="trailing" constant="16" id="T6u-sF-gQn"/>
+                <constraint firstItem="ADa-bA-GaQ" firstAttribute="leading" secondItem="bMs-zc-a9z" secondAttribute="leading" id="Xqr-4G-eXb"/>
+                <constraint firstAttribute="bottom" secondItem="ADa-bA-GaQ" secondAttribute="bottom" constant="8" id="cN7-53-j8e"/>
+                <constraint firstItem="oy9-px-jsa" firstAttribute="top" secondItem="bMs-zc-a9z" secondAttribute="centerY" id="pWC-le-gxS"/>
+            </constraints>
+            <size key="customSize" width="523" height="226"/>
+            <connections>
+                <outlet property="episodeOverviewLabel" destination="ADa-bA-GaQ" id="i11-EA-rxM"/>
+                <outlet property="episodeRuntimeLabel" destination="oy9-px-jsa" id="wVO-Fs-abB"/>
+                <outlet property="episodeTitleLabel" destination="Vcb-j5-RrY" id="hnh-aB-R5X"/>
+                <outlet property="thumbnailImageView" destination="bMs-zc-a9z" id="UWc-fI-j2K"/>
+            </connections>
+            <point key="canvasLocation" x="342.74809160305341" y="82.394366197183103"/>
+        </collectionViewCell>
+    </objects>
+</document>

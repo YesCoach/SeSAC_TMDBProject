@@ -9,24 +9,24 @@ import Foundation
 
 // MARK: - TVResult
 
-// TODO: - MovieResult랑 TVResult이 같은 타입을 채택하게 할 수 없을까? Polymolphism ?
 struct TVResult: Codable {
-
     let page: Int
     let results: [TV]
     let totalPages, totalResults: Int
+}
+
+extension TVResult {
 
     enum CodingKeys: String, CodingKey {
         case page, results
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }
+
 }
 
 // MARK: - TV
 struct TV: Media {
-
-
 
     let id: Int
     let adult: Bool
@@ -64,11 +64,4 @@ extension TV {
         case mediaType = "media_type"
     }
 
-    var posterURL: String {
-        return "https://image.tmdb.org/t/p/original\(posterPath)"
-    }
-
-    var backdropURL: String {
-        return "https://image.tmdb.org/t/p/original\(backdropPath)"
-    }
 }

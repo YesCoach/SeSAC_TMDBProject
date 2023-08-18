@@ -9,7 +9,7 @@ import Foundation
 
 struct Cast: Codable {
     let id: Int
-    let castID: Int
+    let castID: Int?
     let castName: String
     let characterName: String
     let profilePath: String?

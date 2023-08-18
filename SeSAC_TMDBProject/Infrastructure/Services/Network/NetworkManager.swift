@@ -26,9 +26,13 @@ extension NetworkManager {
         AF.request(url, method: .get, headers: header)
             .validate(statusCode: 200...299)
             .responseDecodable(of: T.self) { response in
-                guard let value = response.value else { return }
-                dump(value)
-                completionHandler(value)
+                switch response.result {
+                case .success(let data):
+                    completionHandler(data)
+                case .failure(let error):
+                    print(url)
+                    debugPrint(error)
+                }
             }
     }
 
