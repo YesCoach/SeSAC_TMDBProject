@@ -35,14 +35,14 @@ struct Movie: Media {
     let originalTitle: String
     let originalLanguage: String
     let overview: String
-    let posterPath: String
-    let backdropPath: String
+    let posterPath: String?
+    let backdropPath: String?
     let genreIDs: [Int]
     let popularity: Double
     let releaseDate: String
     let voteAverage: Double
     let voteCount: Int
-    let mediaType: APIURL.TMDB.MediaType
+    let mediaType: APIURL.TMDB.MediaType?
 }
 
 extension Movie {

@@ -7,11 +7,15 @@
 
 import UIKit
 
-class MediaCastingTableViewCell: UITableViewCell {
+final class MediaCastingTableViewCell: UITableViewCell {
+
+    // MARK: - UIComponents
 
     @IBOutlet var thumbnailImageView: UIImageView!
     @IBOutlet var castingNameLabel: UILabel!
     @IBOutlet var castingInfoLabel: UILabel!
+
+    // MARK: - Initializer
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +30,8 @@ class MediaCastingTableViewCell: UITableViewCell {
     }
 
 }
+
+// MARK: - Methods
 
 extension MediaCastingTableViewCell {
 
@@ -43,6 +49,8 @@ extension MediaCastingTableViewCell {
 
 }
 
+// MARK: - Private Methods
+
 private extension MediaCastingTableViewCell {
 
     func configureUI() {
@@ -56,4 +64,5 @@ private extension MediaCastingTableViewCell {
         castingInfoLabel.font = .systemFont(ofSize: 14.0, weight: .regular)
         castingInfoLabel.textColor = .lightGray
     }
+
 }

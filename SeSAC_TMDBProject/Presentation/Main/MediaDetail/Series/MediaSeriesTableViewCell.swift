@@ -9,7 +9,11 @@ import UIKit
 
 final class MediaSeriesTableViewCell: UITableViewCell {
 
+    // MARK: - UIComponents
+
     @IBOutlet var collectionView: CustomCollectionView!
+
+    // MARK: - Properties
 
     private var data: [Season] = [] {
         didSet {
@@ -17,14 +21,26 @@ final class MediaSeriesTableViewCell: UITableViewCell {
         }
     }
 
-    var completionHandler: (() -> ())?
+    // MARK: - Initializer
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         configureUI()
     }
+
 }
+
+// MARK: - Methods
+
+extension MediaSeriesTableViewCell {
+
+    func configure(with data: [Season]) {
+        self.data = data
+    }
+
+}
+
+// MARK: - Private Methods
 
 private extension MediaSeriesTableViewCell {
 
@@ -41,12 +57,6 @@ private extension MediaSeriesTableViewCell {
         )
         collectionView.dataSource = self
         collectionView.isScrollEnabled = false
-
-        collectionView.reloadDataWithCompletion { [weak self] in
-            guard let self, let completionHandler else { return }
-            self.layoutIfNeeded()
-            completionHandler()
-        }
     }
 
     func configureCollectionViewLayout() {
@@ -62,25 +72,24 @@ private extension MediaSeriesTableViewCell {
 
 }
 
-extension MediaSeriesTableViewCell {
-
-    func configure(with data: [Season], completion: @escaping () -> ()) {
-        self.data = data
-        self.completionHandler = completion
-    }
-
-}
+// MARK: - UICollectionViewDataSource 구현부
 
 extension MediaSeriesTableViewCell: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return data.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
         return data[section].episodes?.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: MediaSeriesCollectionViewCell.identifier,
             for: indexPath

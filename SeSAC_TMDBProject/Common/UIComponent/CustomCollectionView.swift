@@ -9,17 +9,15 @@ import UIKit
 
 final class CustomCollectionView: UICollectionView {
 
-    private var reloadDataCompletionBlock: (() -> Void)?
-
-    func reloadDataWithCompletion(_ complete: @escaping () -> Void) {
-        reloadDataCompletionBlock = complete
-        super.reloadData()
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
-        if let block = reloadDataCompletionBlock {
-            block()
+        if bounds.size != intrinsicContentSize {
+            self.invalidateIntrinsicContentSize()
         }
     }
+
+    override var intrinsicContentSize: CGSize {
+        return collectionViewLayout.collectionViewContentSize
+    }
+
 }

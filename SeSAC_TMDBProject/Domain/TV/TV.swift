@@ -30,18 +30,19 @@ struct TV: Media {
 
     let id: Int
     let adult: Bool
-    let backdropPath: String
+    let backdropPath: String?
     let title: String
     let originalLanguage: String
-    let originalTitle, overview, posterPath: String
+    let originalTitle: String
+    let overview: String
+    let posterPath: String?
     let genreIDs: [Int]
     let popularity: Double
     let releaseDate: String
     let voteAverage: Double
     let voteCount: Int
     let originCountry: [String]
-    let mediaType: APIURL.TMDB.MediaType
-
+    let mediaType: APIURL.TMDB.MediaType?
 }
 
 extension TV {
