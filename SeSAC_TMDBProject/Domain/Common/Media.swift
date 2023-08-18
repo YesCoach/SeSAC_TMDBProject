@@ -31,6 +31,7 @@ protocol Media: Codable {
     var voteAverage: Double { get }
     var voteCount: Int { get }
     var mediaType: APIURL.TMDB.MediaType { get }
+
 }
 
 extension Media {

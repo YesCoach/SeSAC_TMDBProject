@@ -209,22 +209,20 @@ private extension MovieCastingViewController {
         }
 
         if media.mediaType == .tv {
-            DispatchQueue.global().async { [weak self] in
-                guard let self else { return }
-                NetworkManager.shared.callResponse(
-                    api: .tvCredit(seriesID: media.id)
-                ) { [self] (data: MovieCredit) in
-                    self.castingList = data.cast
-                }
+            let group = DispatchGroup()
+
+            group.enter()
+            NetworkManager.shared.callResponse(
+                api: .tvCredit(seriesID: media.id)
+            ) { [self] (data: MovieCredit) in
+                self.castingList = data.cast
+                group.leave()
             }
 
-            DispatchQueue.global().async { [weak self] in
-                guard let self else { return }
-                NetworkManager.shared.callResponse(
-                    api: .tvDetail(seriesID: media.id)
-                ) { [self] (data: TVDetail) in
-                    self.seasonList = data.seasons
-                }
+            NetworkManager.shared.callResponse(
+                api: .tvDetail(seriesID: media.id)
+            ) { [self] (data: TVDetail) in
+                self.seasonList = data.seasons
             }
         }
     }
