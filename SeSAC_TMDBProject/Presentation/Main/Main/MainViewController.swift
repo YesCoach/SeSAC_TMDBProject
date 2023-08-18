@@ -60,9 +60,9 @@ extension MainViewController: UICollectionViewDataSource {
             cell.configure(with: media) { [weak self] media in
                 guard let self else { return }
                 guard let viewController = storyboard?.instantiateViewController(
-                    identifier: MovieCastingViewController.identifier,
+                    identifier: MediaCastingViewController.identifier,
                     creator: { coder in
-                        let viewController = MovieCastingViewController(
+                        let viewController = MediaCastingViewController(
                             media: media,
                             coder: coder
                         )
@@ -76,9 +76,9 @@ extension MainViewController: UICollectionViewDataSource {
             cell.configure(with: media) { [weak self] media in
                 guard let self else { return }
                 guard let viewController = storyboard?.instantiateViewController(
-                    identifier: MovieCastingViewController.identifier,
+                    identifier: MediaCastingViewController.identifier,
                     creator: { coder in
-                        let viewController = MovieCastingViewController(
+                        let viewController = MediaCastingViewController(
                             media: media,
                             coder: coder
                         )
@@ -133,25 +133,18 @@ private extension MainViewController {
 
     func fetchData(media: APIURL.TMDB.MediaType) {
         if media == .movie {
-            DispatchQueue.global().async { [weak self] in
-                guard let self else { return }
-                NetworkManager.shared.callResponse(
-                    api: .trending(media: media, timeWindow: .week)
-                ) { [self] (data: MovieResult) in
-                    self.mediaList = data.results
-                }
+            NetworkManager.shared.callResponse(
+                api: .trending(media: media, timeWindow: .week)
+            ) { [self] (data: MovieResult) in
+                self.mediaList = data.results
             }
         } else {
-            DispatchQueue.global().async { [weak self] in
-                guard let self else { return }
-                NetworkManager.shared.callResponse(
-                    api: .trending(media: media, timeWindow: .week)
-                ) { [self] (data: TVResult) in
-                    self.mediaList = data.results
-                }
+            NetworkManager.shared.callResponse(
+                api: .trending(media: media, timeWindow: .week)
+            ) { [self] (data: TVResult) in
+                self.mediaList = data.results
             }
         }
-
     }
 
 }

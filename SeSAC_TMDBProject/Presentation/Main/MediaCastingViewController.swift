@@ -1,5 +1,5 @@
 //
-//  MovieCastingViewController.swift
+//  MediaCastingViewController.swift
 //  SeSAC_TMDBProject
 //
 //  Created by 박태현 on 2023/08/13.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class MovieCastingViewController: UIViewController {
+final class MediaCastingViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
@@ -17,22 +17,22 @@ final class MovieCastingViewController: UIViewController {
     @IBOutlet var backgroundImageView: UIImageView!
 
     private let media: Media
-    private let dispatchGroup = DispatchGroup()
 
     private var seasonArray: [Season] = []
     private var seasonList: [TVDetail.Season] = [] {
         didSet {
+            let group = DispatchGroup()
             seasonList.forEach {
-                dispatchGroup.enter()
+                group.enter()
                 NetworkManager.shared.callResponse(
                     api: .seasonsDetails(seriesID: media.id, seasonNumber: $0.seasonNumber)
                 ) { [weak self] (data: Season) in
                     guard let self else { return }
                     seasonArray.append(data)
-                    dispatchGroup.leave()
+                    group.leave()
                 }
             }
-            dispatchGroup.notify(queue: .global()) { [weak self] in
+            group.notify(queue: .global()) { [weak self] in
                 guard let self else { return }
                 seasonArray = seasonArray.sorted { $0.id < $1.id }
                 DispatchQueue.main.async { [self] in
@@ -42,11 +42,7 @@ final class MovieCastingViewController: UIViewController {
         }
     }
 
-    private var castingList: [Cast] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
+    private var castingList: [Cast] = []
 
     init?(media: Media, coder: NSCoder) {
         self.media = media
@@ -65,7 +61,7 @@ final class MovieCastingViewController: UIViewController {
 
 }
 
-extension MovieCastingViewController: UITableViewDataSource {
+extension MediaCastingViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return media.mediaType == .tv ? 3 : 2
@@ -87,9 +83,9 @@ extension MovieCastingViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: MovieOverviewTableViewCell.identifier,
+                withIdentifier: MediaOverviewTableViewCell.identifier,
                 for: indexPath
-            ) as? MovieOverviewTableViewCell
+            ) as? MediaOverviewTableViewCell
             else { return UITableViewCell() }
 
             cell.configure(with: media.overview) {
@@ -114,9 +110,9 @@ extension MovieCastingViewController: UITableViewDataSource {
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(
-                    withIdentifier: MovieCastingTableViewCell.identifier,
+                    withIdentifier: MediaCastingTableViewCell.identifier,
                     for: indexPath
-                ) as? MovieCastingTableViewCell
+                ) as? MediaCastingTableViewCell
                 else { return UITableViewCell() }
 
                 let cast = castingList[indexPath.row]
@@ -126,9 +122,9 @@ extension MovieCastingViewController: UITableViewDataSource {
             }
         case 2:
             guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: MovieCastingTableViewCell.identifier,
+                withIdentifier: MediaCastingTableViewCell.identifier,
                 for: indexPath
-            ) as? MovieCastingTableViewCell
+            ) as? MediaCastingTableViewCell
             else { return UITableViewCell() }
 
             let cast = castingList[indexPath.row]
@@ -150,7 +146,7 @@ extension MovieCastingViewController: UITableViewDataSource {
 
 }
 
-private extension MovieCastingViewController {
+private extension MediaCastingViewController {
 
     func configureUI() {
         configureTableView()
@@ -175,12 +171,12 @@ private extension MovieCastingViewController {
 
     func configureTableView() {
         tableView.register(
-            UINib(nibName: MovieCastingTableViewCell.identifier, bundle: nil),
-            forCellReuseIdentifier: MovieCastingTableViewCell.identifier
+            UINib(nibName: MediaCastingTableViewCell.identifier, bundle: nil),
+            forCellReuseIdentifier: MediaCastingTableViewCell.identifier
         )
         tableView.register(
-            UINib(nibName: MovieOverviewTableViewCell.identifier, bundle: nil),
-            forCellReuseIdentifier: MovieOverviewTableViewCell.identifier
+            UINib(nibName: MediaOverviewTableViewCell.identifier, bundle: nil),
+            forCellReuseIdentifier: MediaOverviewTableViewCell.identifier
         )
         tableView.register(
             UINib(nibName: MediaSeriesTableViewCell.identifier, bundle: nil),
@@ -196,14 +192,14 @@ private extension MovieCastingViewController {
     }
 
     func fetchData() {
-
         if media.mediaType == .movie {
-            DispatchQueue.global().async { [weak self] in
-                guard let self else { return }
-                NetworkManager.shared.callResponse(
-                    api: .movieCredit(movieID: media.id)
-                ) { [self] (data: MovieCredit) in
-                    self.castingList = data.cast
+            NetworkManager.shared.callResponse(
+                api: .movieCredit(movieID: media.id)
+            ) { [self] (data: MovieCredit) in
+                self.castingList = data.cast
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    tableView.reloadData()
                 }
             }
         }
@@ -218,11 +214,17 @@ private extension MovieCastingViewController {
                 self.castingList = data.cast
                 group.leave()
             }
-
+            group.enter()
             NetworkManager.shared.callResponse(
                 api: .tvDetail(seriesID: media.id)
             ) { [self] (data: TVDetail) in
                 self.seasonList = data.seasons
+                group.leave()
+            }
+
+            group.notify(queue: .main) { [weak self] in
+                guard let self else { return }
+                tableView.reloadData()
             }
         }
     }

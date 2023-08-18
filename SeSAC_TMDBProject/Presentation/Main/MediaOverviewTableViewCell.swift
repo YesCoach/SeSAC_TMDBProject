@@ -1,5 +1,5 @@
 //
-//  MovieOverviewTableViewCell.swift
+//  MediaOverviewTableViewCell.swift
 //  SeSAC_TMDBProject
 //
 //  Created by 박태현 on 2023/08/14.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieOverviewTableViewCell: UITableViewCell {
+class MediaOverviewTableViewCell: UITableViewCell {
 
     @IBOutlet var overviewLabel: UILabel!
     @IBOutlet var expandButton: UIButton!
@@ -27,7 +27,7 @@ class MovieOverviewTableViewCell: UITableViewCell {
 
 }
 
-extension MovieOverviewTableViewCell {
+extension MediaOverviewTableViewCell {
     func configure(with overview: String, completion: @escaping (() -> ())) {
         overviewLabel.text = overview
         completionHandler = completion
@@ -35,7 +35,7 @@ extension MovieOverviewTableViewCell {
     }
 }
 
-private extension MovieOverviewTableViewCell {
+private extension MediaOverviewTableViewCell {
     func configureUI() {
         expandButton.setImage(.init(systemName: "chevron.down"), for: .normal)
         expandButton.setImage(.init(systemName: "chevron.up"), for: .selected)

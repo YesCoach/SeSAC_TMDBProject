@@ -1,5 +1,5 @@
 //
-//  MovieCastingTableViewCell.swift
+//  MediaCastingTableViewCell.swift
 //  SeSAC_TMDBProject
 //
 //  Created by 박태현 on 2023/08/13.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieCastingTableViewCell: UITableViewCell {
+class MediaCastingTableViewCell: UITableViewCell {
 
     @IBOutlet var thumbnailImageView: UIImageView!
     @IBOutlet var castingNameLabel: UILabel!
@@ -27,7 +27,7 @@ class MovieCastingTableViewCell: UITableViewCell {
 
 }
 
-extension MovieCastingTableViewCell {
+extension MediaCastingTableViewCell {
 
     func configure(with data: Cast) {
         castingNameLabel.text = data.castName
@@ -43,7 +43,7 @@ extension MovieCastingTableViewCell {
 
 }
 
-private extension MovieCastingTableViewCell {
+private extension MediaCastingTableViewCell {
 
     func configureUI() {
         thumbnailImageView.contentMode = .scaleAspectFill

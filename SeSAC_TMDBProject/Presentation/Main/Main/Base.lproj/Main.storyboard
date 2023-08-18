@@ -50,7 +50,7 @@
                     <navigationItem key="navigationItem" id="ZEq-At-pb9">
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" id="6fe-Ln-9LU"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="tJh-gV-Us7">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="tJh-gV-Us7">
                             <rect key="frame" x="131" y="6" width="131" height="32"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="938.16793893129773" y="-2.1126760563380285"/>
         </scene>
-        <!--Movie Casting View Controller-->
+        <!--Media Casting View Controller-->
         <scene sceneID="Nba-Oq-6CI">
             <objects>
-                <viewController storyboardIdentifier="MovieCastingViewController" id="3xz-s6-yc4" customClass="MovieCastingViewController" customModule="SeSAC_TMDBProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MediaCastingViewController" id="3xz-s6-yc4" customClass="MediaCastingViewController" customModule="SeSAC_TMDBProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O3s-k9-gw8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
