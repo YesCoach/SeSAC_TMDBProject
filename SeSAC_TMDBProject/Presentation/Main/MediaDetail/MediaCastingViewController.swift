@@ -157,13 +157,13 @@ private extension MediaCastingViewController {
                             seriesID: self.media.id,
                             seasonNumber: $0.seasonNumber
                         )
-                    ) { [self] (data: Season) in
+                    ) { (data: Season) in
                         self.seasonArray.append(data)
                         nestedGroup.leave()
                     }
                 }
 
-                nestedGroup.notify(queue: .global()) { [self] in
+                nestedGroup.notify(queue: .global()) {
                     self.seasonArray = self.seasonArray.sorted { $0.id < $1.id }
                     group.leave()
                 }

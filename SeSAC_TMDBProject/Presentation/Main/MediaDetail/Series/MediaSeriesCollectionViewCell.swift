@@ -23,6 +23,11 @@ final class MediaSeriesCollectionViewCell: UICollectionViewCell {
         configureUI()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        thumbnailImageView.image = .init(systemName: "photo")
+    }
+
 }
 
 // MARK: - Methods
@@ -30,11 +35,12 @@ final class MediaSeriesCollectionViewCell: UICollectionViewCell {
 extension MediaSeriesCollectionViewCell {
 
     func configure(with data: Episode) {
-        if let imageURL = data.imageURL {
-            thumbnailImageView.kf.setImage(with: URL(string: imageURL))
+        if let imageURL = data.imageURL,
+           let url = URL(string: imageURL) {
+            thumbnailImageView.kf.setImage(with: url)
         }
         episodeTitleLabel.text = data.name
-        episodeRuntimeLabel.text = "\(data.runtime)"
+        episodeRuntimeLabel.text = "\(data.runtime ?? 0)"
         episodeOverviewLabel.text = data.overview
     }
 
@@ -45,7 +51,11 @@ extension MediaSeriesCollectionViewCell {
 private extension MediaSeriesCollectionViewCell {
 
     func configureUI() {
+        thumbnailImageView.kf.indicatorType = .activity
         thumbnailImageView.contentMode = .scaleAspectFill
+        thumbnailImageView.tintColor = .gray
+        thumbnailImageView.image = .init(systemName: "photo")
+
         episodeTitleLabel.font = .systemFont(ofSize: 17.0, weight: .regular)
         episodeRuntimeLabel.font = .systemFont(ofSize: 13.0, weight: .regular)
         episodeRuntimeLabel.textColor = .gray

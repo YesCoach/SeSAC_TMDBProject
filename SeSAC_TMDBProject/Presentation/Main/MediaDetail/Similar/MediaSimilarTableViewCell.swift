@@ -65,7 +65,7 @@ private extension MediaSimilarTableViewCell {
         let spacing = 20.0
         let width = (UIScreen.main.bounds.width - (spacing * 3)) / 3
 
-        layout.itemSize = .init(width: width, height: width * 1.3)
+        layout.itemSize = .init(width: width, height: width * 1.4)
         layout.minimumInteritemSpacing = spacing
         layout.minimumLineSpacing = spacing
         layout.sectionInset = .init(top: spacing, left: spacing, bottom: spacing, right: spacing)

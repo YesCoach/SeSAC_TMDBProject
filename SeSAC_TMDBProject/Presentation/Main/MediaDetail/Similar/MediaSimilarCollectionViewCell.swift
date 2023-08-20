@@ -23,7 +23,7 @@ final class MediaSimilarCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        posterImageView.image = .init(systemName: "questionmark")
+        posterImageView.image = .init(systemName: "photo")
     }
 
 }
@@ -35,8 +35,7 @@ extension MediaSimilarCollectionViewCell {
     func configure(with data: Media) {
         if let url = URL(string: data.posterURL) {
             posterImageView.kf.setImage(
-                with: url,
-                placeholder: UIImage(systemName: "questionmark")
+                with: url
             )
         }
     }
@@ -49,8 +48,12 @@ private extension MediaSimilarCollectionViewCell {
 
     func configureUI() {
         posterImageView.contentMode = .scaleAspectFill
+        posterImageView.tintColor = .gray
+        posterImageView.kf.indicatorType = .activity
+        posterImageView.image = .init(systemName: "photo")
         contentView.layer.cornerRadius = 10.0
         contentView.layer.masksToBounds = true
     }
 
 }
+

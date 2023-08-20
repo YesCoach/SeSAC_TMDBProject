@@ -13,7 +13,6 @@ protocol ViewReusable: AnyObject {
 
 
 extension UIViewController: ViewReusable { }
-extension UICollectionViewCell: ViewReusable { }
 extension UITableViewCell: ViewReusable { }
 extension UICollectionReusableView: ViewReusable { }
 
