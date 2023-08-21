@@ -17,6 +17,7 @@ final class MainCollectionViewCell: UICollectionViewCell {
     @IBOutlet var scoreTitleLabel: PaddingLabel!
     @IBOutlet var scoreValueLabel: PaddingLabel!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var originalTitleLabel: UILabel!
     @IBOutlet var castingLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var chevronButton: UIButton!
@@ -83,6 +84,7 @@ extension MainCollectionViewCell {
 
         scoreValueLabel.text = String(format: "%.1f", data.voteAverage)
         titleLabel.text = "\(data.title)"
+        originalTitleLabel.text = "\(data.originalTitle)"
         castingLabel.text = "으아아아"
 
         completionHandler = completion
@@ -107,6 +109,9 @@ private extension MainCollectionViewCell {
 
         titleLabel.font = .systemFont(ofSize: 17.0, weight: .regular)
         titleLabel.textColor = .black
+
+        originalTitleLabel.font = .systemFont(ofSize: 15.0, weight: .regular)
+        originalTitleLabel.textColor = .black
 
         castingLabel.font = .systemFont(ofSize: 14.0, weight: .regular)
         castingLabel.textColor = .systemGray
