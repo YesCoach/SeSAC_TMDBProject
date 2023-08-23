@@ -24,6 +24,7 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        LocationManager.shared.checkDeviceLocationAuthorization()
         configureUI()
         fetchData(media: .movie)
     }
