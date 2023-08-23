@@ -52,8 +52,10 @@ extension LocationManager {
             locationManager.requestWhenInUseAuthorization() // 얼럿, infoplist
         case .restricted:
             print("restricted") // 자녀모드,,
+            currenCoordinate = .init(latitude: 37.517829, longitude: 126.886270)
         case .denied:
             print("denied") // TODO: 설정창으로 유도하는 얼럿 호출
+            currenCoordinate = .init(latitude: 37.517829, longitude: 126.886270)
         case .authorizedAlways:
             print("authorizedAlways")
             locationManager.startUpdatingLocation()
