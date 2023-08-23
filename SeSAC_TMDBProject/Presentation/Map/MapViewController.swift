@@ -18,9 +18,25 @@ final class MapViewController: UIViewController {
         return mapView
     }()
 
+    private lazy var locationButton: UIButton = {
+        let button = UIButton()
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.imageEdgeInsets = .init(top: 8, left: 8, bottom: 8, right: 8)
+        button.setImage(UIImage(systemName: "location.circle"), for: .normal)
+        button.tintColor = .systemMint
+        button.addTarget(self, action: #selector(didLocationButtonTouched), for: .touchUpInside)
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        LocationManager.shared.delegate = self
         configureUI()
+    }
+
+    @objc func didLocationButtonTouched(_ sender: UIButton) {
+        LocationManager.shared.checkDeviceLocationAuthorization()
     }
 }
 
@@ -33,11 +49,10 @@ private extension MapViewController {
     }
 
     func configureLayout() {
-        view.addSubview(mapView)
-
         [
-            mapView
+            mapView, locationButton
         ].forEach {
+            view.addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
 
@@ -45,7 +60,15 @@ private extension MapViewController {
             mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+
+            locationButton.widthAnchor.constraint(equalToConstant: 50),
+            locationButton.heightAnchor.constraint(equalTo: locationButton.widthAnchor),
+            locationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            locationButton.bottomAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                constant: -20
+            )
         ].forEach {
             $0.isActive = true
         }
@@ -67,4 +90,12 @@ private extension MapViewController {
 
 extension MapViewController: MKMapViewDelegate {
 
+}
+
+// MARK: - LocationManagerDelegate 구현부
+
+extension MapViewController: LocationManagerDelegate {
+    func presentAuthorizationAlert(alert: UIAlertController) {
+        present(alert, animated: true)
+    }
 }

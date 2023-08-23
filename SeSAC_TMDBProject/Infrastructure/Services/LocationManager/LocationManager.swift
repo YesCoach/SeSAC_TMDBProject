@@ -7,6 +7,11 @@
 
 import Foundation
 import CoreLocation
+import UIKit
+
+protocol LocationManagerDelegate {
+    func presentAuthorizationAlert(alert: UIAlertController)
+}
 
 final class LocationManager: NSObject {
 
@@ -15,11 +20,15 @@ final class LocationManager: NSObject {
     private let locationManager = CLLocationManager()
     private(set) var currenCoordinate: CLLocationCoordinate2D?
 
+    var delegate: LocationManagerDelegate?
+
     private override init() {
         super.init()
         locationManager.delegate = self
     }
 }
+
+// MARK: - Methods
 
 extension LocationManager {
 
@@ -45,7 +54,7 @@ extension LocationManager {
     }
 
     // 2. 권한 상태 확인
-    func checkCurrentLocationAuthorization(status: CLAuthorizationStatus) {
+    private func checkCurrentLocationAuthorization(status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -54,8 +63,26 @@ extension LocationManager {
             print("restricted") // 자녀모드,,
             currenCoordinate = .init(latitude: 37.517829, longitude: 126.886270)
         case .denied:
-            print("denied") // TODO: 설정창으로 유도하는 얼럿 호출
+            print("denied")
             currenCoordinate = .init(latitude: 37.517829, longitude: 126.886270)
+
+            let alert = UIAlertController(
+                title: "위치 정보가 필요해요",
+                message: "'설정>개인정보 보호'에서 위치 서비스를 켜주세요",
+                preferredStyle: .alert
+            )
+            let goSetting = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
+                if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(appSetting)
+                }
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+
+            alert.addAction(goSetting)
+            alert.addAction(cancel)
+
+            delegate?.presentAuthorizationAlert(alert: alert)
+
         case .authorizedAlways:
             print("authorizedAlways")
             locationManager.startUpdatingLocation()
@@ -69,6 +96,8 @@ extension LocationManager {
 
     }
 }
+
+// MARK: - CLLocationManagerDelegate 구현부
 
 extension LocationManager: CLLocationManagerDelegate {
 
