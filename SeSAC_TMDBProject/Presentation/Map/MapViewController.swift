@@ -117,6 +117,7 @@ final class MapViewController: UIViewController {
 
     @objc func didLocationButtonTouched(_ sender: UIButton) {
         LocationManager.shared.checkDeviceLocationAuthorization()
+        configureMapView()
     }
 
     @objc func didFilterButtonTouched(_ sender: UIBarButtonItem) {

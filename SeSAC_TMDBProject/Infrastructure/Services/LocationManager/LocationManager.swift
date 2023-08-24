@@ -32,7 +32,7 @@ final class LocationManager: NSObject {
 
 extension LocationManager {
 
-    // 1. 기기 권한 확인
+    // 1. 기기 위치 서비스 허용 여부 확인
     func checkDeviceLocationAuthorization() {
         DispatchQueue.global().async { [weak self] in
             guard let self else { return }
@@ -45,7 +45,7 @@ extension LocationManager {
                     authorization = CLLocationManager.authorizationStatus()
                 }
                 // 위에서 권한 요청하고, 밑에서 권한 확인 로직으로 진입
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [self] in
                     self.checkCurrentLocationAuthorization(status: authorization)
                 }
             } else {
@@ -69,7 +69,7 @@ extension LocationManager {
         }
     }
 
-    // 2. 권한 상태 확인
+    // 2. 앱의 위치 정보 권한 상태 확인
     private func checkCurrentLocationAuthorization(status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
@@ -109,7 +109,6 @@ extension LocationManager {
             print("authorized")
         default: print("default") // 위치 권한 종류가 더 생길 가능성 대비
         }
-
     }
 }
 
