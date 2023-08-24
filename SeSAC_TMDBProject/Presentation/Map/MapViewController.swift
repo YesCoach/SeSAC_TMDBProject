@@ -31,6 +31,16 @@ final class MapViewController: UIViewController {
         return button
     }()
 
+    private lazy var rightBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem(
+            title: "Filter",
+            style: .plain,
+            target: self,
+            action: #selector(didFilterButtonTouched)
+        )
+        return barButtonItem
+    }()
+
     // MARK: - Properties
 
     private let cgvList = [
@@ -78,15 +88,27 @@ final class MapViewController: UIViewController {
     @objc func didLocationButtonTouched(_ sender: UIButton) {
         LocationManager.shared.checkDeviceLocationAuthorization()
     }
+
+    @objc func didFilterButtonTouched(_ sender: UIBarButtonItem) {
+
+    }
 }
 
 // MARK: - Private Methods
 
 private extension MapViewController {
+
     func configureUI() {
+        configureNavigationBar()
         configureLayout()
         configureMapView()
         configureAnnotation()
+    }
+
+    func configureNavigationBar() {
+        navigationController?.navigationBar.tintColor = .systemMint
+        navigationItem.title = "주변의 영화관"
+        navigationItem.rightBarButtonItem = rightBarButtonItem
     }
 
     func configureLayout() {

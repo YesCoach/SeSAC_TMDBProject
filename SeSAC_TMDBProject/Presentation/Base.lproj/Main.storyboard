@@ -160,7 +160,7 @@
             </objects>
             <point key="canvasLocation" x="938.16793893129773" y="-2.1126760563380285"/>
         </scene>
-        <!--주변 영화관-->
+        <!--Map View Controller-->
         <scene sceneID="g3m-jL-ohs">
             <objects>
                 <viewController id="KSa-1h-13B" customClass="MapViewController" customModule="SeSAC_TMDBProject" customModuleProvider="target" sceneMemberID="viewController">
@@ -170,11 +170,11 @@
                         <viewLayoutGuide key="safeArea" id="A0U-fz-tvc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="주변 영화관" image="mappin.circle" catalog="system" id="GCB-gk-heP"/>
+                    <navigationItem key="navigationItem" id="UpR-by-Xb1"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KVF-AY-2zS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="751"/>
+            <point key="canvasLocation" x="1863.3587786259541" y="750.70422535211276"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="OrQ-tr-xDH">
@@ -188,12 +188,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="hBa-5i-PLb" kind="relationship" relationship="viewControllers" id="lOg-50-9O4"/>
-                        <segue destination="KSa-1h-13B" kind="relationship" relationship="viewControllers" id="RNe-i8-yrO"/>
+                        <segue destination="6a9-4Z-r0u" kind="relationship" relationship="viewControllers" id="RNe-i8-yrO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CTs-z1-1gh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="11.450381679389313" y="-2.1126760563380285"/>
+        </scene>
+        <!--주변 영화관-->
+        <scene sceneID="jn4-hi-ql7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6a9-4Z-r0u" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="주변 영화관" image="mappin.circle" catalog="system" id="GCB-gk-heP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mdR-za-AgQ">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="KSa-1h-13B" kind="relationship" relationship="rootViewController" id="us9-XZ-zbs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a2l-bq-f8M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="936.64122137404581" y="750.70422535211276"/>
         </scene>
     </scenes>
     <resources>
