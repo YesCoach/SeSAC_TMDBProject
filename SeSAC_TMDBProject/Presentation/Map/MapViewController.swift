@@ -41,6 +41,32 @@ final class MapViewController: UIViewController {
         return barButtonItem
     }()
 
+    private lazy var filterAlert: UIAlertController = {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let action1 = UIAlertAction(title: "메가박스", style: .default) { [weak self] _ in
+            guard let self else { return }
+            showCinemaList = megaboxList
+        }
+        let action2 = UIAlertAction(title: "롯데시네마", style: .default) { [weak self] _ in
+            guard let self else { return }
+            showCinemaList = lotteList
+        }
+        let action3 = UIAlertAction(title: "CGV", style: .default) { [weak self] _ in
+            guard let self else { return }
+            showCinemaList = cgvList
+        }
+        let action4 = UIAlertAction(title: "전체보기", style: .default) { [weak self] _ in
+            guard let self else { return }
+            showCinemaList = megaboxList + lotteList + cgvList
+        }
+        let action5 = UIAlertAction(title: "취소", style: .cancel)
+
+        [action1, action2, action3, action4, action5].forEach {
+            alert.addAction($0)
+        }
+        return alert
+    }()
+
     // MARK: - Properties
 
     private let cgvList = [
@@ -76,7 +102,11 @@ final class MapViewController: UIViewController {
         ((37.526939, 126.874437), "메가박스 목동")
     ]
 
-    private var showCinemaList: [(Coordinate, String)] = []
+    private var showCinemaList: [(Coordinate, String)] = [] {
+        didSet {
+            configureAnnotation()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,7 +120,7 @@ final class MapViewController: UIViewController {
     }
 
     @objc func didFilterButtonTouched(_ sender: UIBarButtonItem) {
-
+        present(filterAlert, animated: true)
     }
 }
 
@@ -102,7 +132,6 @@ private extension MapViewController {
         configureNavigationBar()
         configureLayout()
         configureMapView()
-        configureAnnotation()
     }
 
     func configureNavigationBar() {
