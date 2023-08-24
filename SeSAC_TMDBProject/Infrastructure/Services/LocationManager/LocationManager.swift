@@ -34,7 +34,8 @@ extension LocationManager {
 
     // 1. 기기 권한 확인
     func checkDeviceLocationAuthorization() {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
             if CLLocationManager.locationServicesEnabled() {
 
                 let authorization: CLAuthorizationStatus
@@ -48,7 +49,22 @@ extension LocationManager {
                     self.checkCurrentLocationAuthorization(status: authorization)
                 }
             } else {
-                print("위치 서비스가 꺼져 있어서 위치 권한 요청을 못합니다")
+                let alert = UIAlertController(
+                    title: "위치 서비스가 꺼져있어요",
+                    message: "'설정>개인정보 보호'에서 위치 서비스를 켜주세요",
+                    preferredStyle: .alert
+                )
+                let goSetting = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
+                    if let appSetting = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(appSetting)
+                    }
+                }
+                let cancel = UIAlertAction(title: "취소", style: .cancel)
+
+                alert.addAction(goSetting)
+                alert.addAction(cancel)
+
+                delegate?.presentAuthorizationAlert(alert: alert)
             }
         }
     }
@@ -67,8 +83,8 @@ extension LocationManager {
             currenCoordinate = .init(latitude: 37.517829, longitude: 126.886270)
 
             let alert = UIAlertController(
-                title: "위치 정보가 필요해요",
-                message: "'설정>개인정보 보호'에서 위치 서비스를 켜주세요",
+                title: "위치 정보에 접근할 수 없어요.",
+                message: "'설정>개인정보 보호>위치 서비스'에서 위치 접근 권한을 허용으로 변경해주세요!",
                 preferredStyle: .alert
             )
             let goSetting = UIAlertAction(title: "설정으로 이동", style: .default) { _ in
