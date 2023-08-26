@@ -29,6 +29,9 @@
 		897E92282A8E42CB005083BF /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E92272A8E42CB005083BF /* CustomCollectionView.swift */; };
 		899FA9A12A9655ED009DA937 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9A02A9655ED009DA937 /* LocationManager.swift */; };
 		899FA9A42A965F0A009DA937 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9A32A965F0A009DA937 /* MapViewController.swift */; };
+		899FA9BF2A99D45A009DA937 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9BE2A99D45A009DA937 /* OnboardingViewController.swift */; };
+		899FA9C12A99D81C009DA937 /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9C02A99D81C009DA937 /* OnboardingContentViewController.swift */; };
+		899FA9C52A9A55AF009DA937 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9C42A9A55AF009DA937 /* TabBarController.swift */; };
 		89AFDA052A87C3020050E9DD /* ViewReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AFDA042A87C3020050E9DD /* ViewReusable.swift */; };
 		89AFDA092A87ECD60050E9DD /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AFDA082A87ECD60050E9DD /* PaddingLabel.swift */; };
 		89AFDA0B2A885E630050E9DD /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AFDA0A2A885E630050E9DD /* Genre.swift */; };
@@ -83,6 +86,9 @@
 		897E92272A8E42CB005083BF /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
 		899FA9A02A9655ED009DA937 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		899FA9A32A965F0A009DA937 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		899FA9BE2A99D45A009DA937 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		899FA9C02A99D81C009DA937 /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
+		899FA9C42A9A55AF009DA937 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		89AFDA042A87C3020050E9DD /* ViewReusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReusable.swift; sourceTree = "<group>"; };
 		89AFDA082A87ECD60050E9DD /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		89AFDA0A2A885E630050E9DD /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -189,11 +195,22 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		899FA9BD2A99D39F009DA937 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				899FA9BE2A99D45A009DA937 /* OnboardingViewController.swift */,
+				899FA9C02A99D81C009DA937 /* OnboardingContentViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		89AFDA022A87C2DD0050E9DD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
 				89C86E642A8617FF000F1E73 /* Main.storyboard */,
+				899FA9C42A9A55AF009DA937 /* TabBarController.swift */,
 				89AFDA042A87C3020050E9DD /* ViewReusable.swift */,
+				899FA9BD2A99D39F009DA937 /* Onboarding */,
 				89AFDA032A87C2E60050E9DD /* Main */,
 				899FA9A22A965EF0009DA937 /* Map */,
 			);
@@ -469,11 +486,14 @@
 				899FA9A12A9655ED009DA937 /* LocationManager.swift in Sources */,
 				89AFDA092A87ECD60050E9DD /* PaddingLabel.swift in Sources */,
 				89C86E962A8641D3000F1E73 /* MainCollectionViewCell.swift in Sources */,
+				899FA9BF2A99D45A009DA937 /* OnboardingViewController.swift in Sources */,
 				897E91E92A8CDB8F005083BF /* TV.swift in Sources */,
+				899FA9C12A99D81C009DA937 /* OnboardingContentViewController.swift in Sources */,
 				89C86E8D2A862BEE000F1E73 /* APIHeader.swift in Sources */,
 				89C86E8B2A862300000F1E73 /* APIURL.swift in Sources */,
 				89C86E862A861F41000F1E73 /* Movie.swift in Sources */,
 				897E92252A8E0CD3005083BF /* Crew.swift in Sources */,
+				899FA9C52A9A55AF009DA937 /* TabBarController.swift in Sources */,
 				89C86E932A863C2B000F1E73 /* MovieCredit.swift in Sources */,
 				897E92282A8E42CB005083BF /* CustomCollectionView.swift in Sources */,
 				897E91E72A8CDAAC005083BF /* Season.swift in Sources */,
