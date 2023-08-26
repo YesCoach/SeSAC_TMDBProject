@@ -32,6 +32,8 @@
 		899FA9BF2A99D45A009DA937 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9BE2A99D45A009DA937 /* OnboardingViewController.swift */; };
 		899FA9C12A99D81C009DA937 /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9C02A99D81C009DA937 /* OnboardingContentViewController.swift */; };
 		899FA9C52A9A55AF009DA937 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9C42A9A55AF009DA937 /* TabBarController.swift */; };
+		899FA9CA2A9A57AF009DA937 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9C92A9A57AF009DA937 /* UserDefaultsManager.swift */; };
+		899FA9CC2A9A57D4009DA937 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9CB2A9A57D4009DA937 /* UserDefaultsWrapper.swift */; };
 		89AFDA052A87C3020050E9DD /* ViewReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AFDA042A87C3020050E9DD /* ViewReusable.swift */; };
 		89AFDA092A87ECD60050E9DD /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AFDA082A87ECD60050E9DD /* PaddingLabel.swift */; };
 		89AFDA0B2A885E630050E9DD /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AFDA0A2A885E630050E9DD /* Genre.swift */; };
@@ -89,6 +91,8 @@
 		899FA9BE2A99D45A009DA937 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		899FA9C02A99D81C009DA937 /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
 		899FA9C42A9A55AF009DA937 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		899FA9C92A9A57AF009DA937 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
+		899FA9CB2A9A57D4009DA937 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		89AFDA042A87C3020050E9DD /* ViewReusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReusable.swift; sourceTree = "<group>"; };
 		89AFDA082A87ECD60050E9DD /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		89AFDA0A2A885E630050E9DD /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
@@ -204,6 +208,15 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		899FA9C82A9A5796009DA937 /* UserDefaultsManager */ = {
+			isa = PBXGroup;
+			children = (
+				899FA9C92A9A57AF009DA937 /* UserDefaultsManager.swift */,
+				899FA9CB2A9A57D4009DA937 /* UserDefaultsWrapper.swift */,
+			);
+			path = UserDefaultsManager;
+			sourceTree = "<group>";
+		};
 		89AFDA022A87C2DD0050E9DD /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,6 +309,7 @@
 		89C86E832A861EBE000F1E73 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				899FA9C82A9A5796009DA937 /* UserDefaultsManager */,
 				899FA99F2A9655BC009DA937 /* LocationManager */,
 				89C86E892A8622F3000F1E73 /* Network */,
 			);
@@ -472,9 +486,11 @@
 				89C86E912A8639D0000F1E73 /* Cast.swift in Sources */,
 				897E91F92A8D1DB6005083BF /* MediaSeriesTableViewCell.swift in Sources */,
 				89C86E632A8617FF000F1E73 /* MainViewController.swift in Sources */,
+				899FA9CA2A9A57AF009DA937 /* UserDefaultsManager.swift in Sources */,
 				89C86E5F2A8617FF000F1E73 /* AppDelegate.swift in Sources */,
 				89C86E772A86197F000F1E73 /* APIKey.swift in Sources */,
 				891A11542A8928CF00D9F64F /* MediaOverviewTableViewCell.swift in Sources */,
+				899FA9CC2A9A57D4009DA937 /* UserDefaultsWrapper.swift in Sources */,
 				89DCCE312A8F7C3900C3AFFE /* MediaSimilarCollectionViewCell.swift in Sources */,
 				89AFDA0D2A88CE200050E9DD /* MediaCastingViewController.swift in Sources */,
 				89C86E612A8617FF000F1E73 /* SceneDelegate.swift in Sources */,

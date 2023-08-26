@@ -73,6 +73,8 @@ final class OnboardingViewController: UIPageViewController {
         ) as? TabBarController
         else { return }
 
+        UserDefaultsManager.isLaunched = true
+
         sceneDelegate?.window?.rootViewController = viewController
         sceneDelegate?.window?.makeKeyAndVisible()
     }
