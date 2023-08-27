@@ -22,6 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UIStoryboard(name: "Main", bundle: nil)
             .instantiateViewController(withIdentifier: TabBarController.identifier)
 
+        // Test Flag
+//        UserDefaultsManager.isLaunched = false
+
         let mainViewController = UserDefaultsManager.isLaunched ? tabBarController : OnboardingViewController()
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()

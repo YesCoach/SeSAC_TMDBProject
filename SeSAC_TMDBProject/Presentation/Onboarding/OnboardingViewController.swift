@@ -27,6 +27,12 @@ final class OnboardingViewController: UIPageViewController {
         return viewController
     }()
 
+    private lazy var fourthVC: OnboardingContentViewController = {
+        let viewController = OnboardingContentViewController()
+        viewController.configure(with: "4", backgroundColor: .systemPurple)
+        return viewController
+    }()
+
     private lazy var button: UIButton = {
         let button = UIButton()
         button.setTitle("시작하기", for: .normal)
@@ -83,7 +89,7 @@ final class OnboardingViewController: UIPageViewController {
 private extension OnboardingViewController {
 
     func configureViewControllers() {
-        viewControllerList = [firstVC, secondVC, thirdVC]
+        viewControllerList = [firstVC, secondVC, thirdVC, fourthVC]
         guard let first = viewControllerList.first else { return }
         setViewControllers([first], direction: .forward, animated: true)
     }
@@ -111,9 +117,9 @@ extension OnboardingViewController: UIPageViewControllerDataSource, UIPageViewCo
         viewControllerBefore viewController: UIViewController
     ) -> UIViewController? {
         guard let firstIndex = viewControllerList.firstIndex(of: viewController) else { return nil }
-        let prevIndex = firstIndex - 1
+        let prevIndex = (firstIndex - 1 + viewControllerList.count) % viewControllerList.count
 
-        return prevIndex < 0 ? nil : viewControllerList[prevIndex]
+        return prevIndex < 0 ? viewController : viewControllerList[prevIndex]
     }
 
     func pageViewController(
@@ -121,8 +127,7 @@ extension OnboardingViewController: UIPageViewControllerDataSource, UIPageViewCo
         viewControllerAfter viewController: UIViewController
     ) -> UIViewController? {
         guard let firstIndex = viewControllerList.firstIndex(of: viewController) else { return nil }
-        print(firstIndex)
-        let afterIndex = firstIndex + 1
+        let afterIndex = (firstIndex + 1) % viewControllerList.count
 
         return afterIndex >= viewControllerList.count ? nil : viewControllerList[afterIndex]
     }

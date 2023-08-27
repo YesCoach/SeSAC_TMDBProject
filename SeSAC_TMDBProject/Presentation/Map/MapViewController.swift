@@ -115,6 +115,11 @@ final class MapViewController: UIViewController {
         configureUI()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        LocationManager.shared.delegate = nil
+    }
+
     @objc func didLocationButtonTouched(_ sender: UIButton) {
         LocationManager.shared.checkDeviceLocationAuthorization()
         configureMapView()
@@ -192,7 +197,23 @@ private extension MapViewController {
 // MARK: - MKMapViewDelegate 구현부
 
 extension MapViewController: MKMapViewDelegate {
+    // 지도를 움직일때마다 호출되는 메서드
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        print(#function)
+    }
 
+    // 지도의 핀이나 화면을 클릭할 때마다 호출되는 메서드
+    func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+        print(#function)
+    }
+
+    // 핀의 이미지를 커스텀하게 구성할때 사용하는 메서드
+    // 1) Custom MKAnnotationView를 구현
+    // 2) MKMapView 인스턴스에 register
+    // 3) 테이블뷰처럼 dequeue해서 사용
+//    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//        print(#function)
+//    }
 }
 
 // MARK: - LocationManagerDelegate 구현부
