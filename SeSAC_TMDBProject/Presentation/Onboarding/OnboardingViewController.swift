@@ -92,12 +92,14 @@ private extension OnboardingViewController {
         view.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
 
-        [
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.heightAnchor.constraint(equalToConstant: 50),
-            button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
-            button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
-        ].forEach { $0.isActive = true}
+        NSLayoutConstraint.activate(
+            [
+                button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                button.heightAnchor.constraint(equalToConstant: 50),
+                button.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+                button.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
+            ]
+        )
     }
 
 }

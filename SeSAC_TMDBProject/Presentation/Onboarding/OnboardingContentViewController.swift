@@ -43,15 +43,17 @@ private extension OnboardingContentViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
 
-        [
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
-            label.widthAnchor.constraint(equalTo: imageView.widthAnchor),
-            label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 16),
-        ].forEach { $0.isActive = true }
+        NSLayoutConstraint.activate(
+            [
+                imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.6),
+                imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
+                imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+                label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
+                label.widthAnchor.constraint(equalTo: imageView.widthAnchor),
+                label.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 16),
+            ]
+        )
     }
 }

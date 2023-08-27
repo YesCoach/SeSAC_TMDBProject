@@ -149,22 +149,22 @@ private extension MapViewController {
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
 
-        [
-            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        NSLayoutConstraint.activate(
+            [
+                mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                mapView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
-            locationButton.widthAnchor.constraint(equalToConstant: 50),
-            locationButton.heightAnchor.constraint(equalTo: locationButton.widthAnchor),
-            locationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            locationButton.bottomAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                constant: -20
-            )
-        ].forEach {
-            $0.isActive = true
-        }
+                locationButton.widthAnchor.constraint(equalToConstant: 50),
+                locationButton.heightAnchor.constraint(equalTo: locationButton.widthAnchor),
+                locationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+                locationButton.bottomAnchor.constraint(
+                    equalTo: view.safeAreaLayoutGuide.bottomAnchor,
+                    constant: -20
+                )
+            ]
+        )
     }
 
     func configureMapView() {
