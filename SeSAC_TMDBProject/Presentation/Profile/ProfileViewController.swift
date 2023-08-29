@@ -31,6 +31,12 @@ final class ProfileViewController: BaseViewController {
     }
 
     @objc func didRightBarButtonTouched(_ sender: UIBarButtonItem) {
+        let viewController = UINavigationController(
+            rootViewController: ProfileEditViewController()
+        )
+        viewController.modalTransitionStyle = .coverVertical
+        viewController.modalPresentationStyle = .fullScreen
 
+        present(viewController, animated: true)
     }
 }
