@@ -11,7 +11,14 @@ final class ProfileEditView: BaseView {
 
     private lazy var profileView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .init(systemName: "person.circle.fill")
+
+        if let profileImageURL = user.profileImageURL,
+           let url = URL(string: profileImageURL)
+        {
+            imageView.kf.setImage(with: url)
+        } else {
+            imageView.image = .init(systemName: "person.circle.fill")
+        }
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.tintColor = .systemMint
@@ -28,6 +35,7 @@ final class ProfileEditView: BaseView {
     lazy var nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = nameLabel.text
+        textField.text = user.name
         textField.font = .systemFont(ofSize: 14.0, weight: .regular)
         textField.tag = EditType.name.rawValue
         return textField
@@ -43,10 +51,22 @@ final class ProfileEditView: BaseView {
     lazy var introduceTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = introduceLabel.text
+        textField.text = user.introduce
         textField.font = .systemFont(ofSize: 14.0, weight: .regular)
         textField.tag = EditType.introduce.rawValue
         return textField
     }()
+
+    private var user: User
+
+    init(user: User) {
+        self.user = user
+        super.init(frame: .zero)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func configureLayout() {
         super.configureLayout()

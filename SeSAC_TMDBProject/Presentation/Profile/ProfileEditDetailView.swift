@@ -17,7 +17,7 @@ final class ProfileEditDetailView: BaseView {
         return label
     }()
 
-    private lazy var inputTextField: UITextField = {
+    lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.font = .systemFont(ofSize: 16.0, weight: .regular)
         textField.text = text

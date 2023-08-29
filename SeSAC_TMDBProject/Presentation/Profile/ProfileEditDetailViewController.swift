@@ -40,6 +40,8 @@ final class ProfileEditDetailViewController: BaseViewController {
     private let editType: EditType
     private let text: String?
 
+    var completionHandler: ((String) -> Void)?
+
     // MARK: - Initializers
 
 
@@ -67,6 +69,13 @@ final class ProfileEditDetailViewController: BaseViewController {
     // MARK: - Actions
 
     @objc func didConfirmButtonClicked(_ sender: UIBarButtonItem) {
+        let inputText = mainView.inputTextField.text!
 
+        if inputText.isEmpty == false,
+           inputText != text
+        {
+            completionHandler?(inputText)
+        }
+        navigationController?.popViewController(animated: true)
     }
 }

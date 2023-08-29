@@ -18,9 +18,17 @@ final class ProfileView: BaseView {
     }()
      */
 
+    // MARK: - UIComponents
+
     private lazy var profileView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .init(systemName: "person.circle.fill")
+        if let profileImageURL = user.profileImageURL,
+           let url = URL(string: profileImageURL)
+        {
+            imageView.kf.setImage(with: url)
+        } else {
+            imageView.image = .init(systemName: "person.circle.fill")
+        }
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.tintColor = .systemMint
@@ -29,23 +37,53 @@ final class ProfileView: BaseView {
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "yescoach"
+        label.text = user.name
         label.font = .systemFont(ofSize: 13.0, weight: .bold)
         return label
     }()
 
-    private lazy var descriptionLabel: UILabel = {
+    private lazy var introduceLabel: UILabel = {
         let label = UILabel()
-        label.text = "smu ios dev 🍎"
+        label.text = user.introduce
         label.font = .systemFont(ofSize: 12.0, weight: .regular)
         return label
     }()
+
+    // MARK: - Properties
+
+    private var user: User {
+        didSet {
+            if let profileImageURL = user.profileImageURL,
+               let url = URL(string: profileImageURL)
+            {
+                profileView.kf.setImage(with: url)
+            } else {
+                profileView.image = .init(systemName: "person.circle.fill")
+            }
+
+            nameLabel.text = user.name
+            introduceLabel.text = user.introduce
+        }
+    }
+
+    // MARK: - Initializer
+
+    init(user: User) {
+        self.user = user
+        super.init(frame: .zero)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Methods
 
     override func configureLayout() {
         super.configureLayout()
 
         [
-            profileView, nameLabel, descriptionLabel
+            profileView, nameLabel, introduceLabel
         ].forEach { addSubview($0) }
 
         profileView.snp.makeConstraints {
@@ -59,7 +97,7 @@ final class ProfileView: BaseView {
             $0.horizontalEdges.equalToSuperview().inset(80)
         }
 
-        descriptionLabel.snp.makeConstraints {
+        introduceLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(20)
             $0.horizontalEdges.equalTo(nameLabel)
         }
@@ -69,5 +107,12 @@ final class ProfileView: BaseView {
         super.layoutSubviews()
 
         profileView.layer.cornerRadius = profileView.frame.width / 2
+    }
+}
+
+extension ProfileView {
+
+    func configure(with user: User) {
+        self.user = user
     }
 }

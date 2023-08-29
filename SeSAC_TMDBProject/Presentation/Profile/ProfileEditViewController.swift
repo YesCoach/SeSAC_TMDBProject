@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol ProfileEditViewControllerDelegate {
+    func updateUserProfile(user: User)
+}
+
 final class ProfileEditViewController: BaseViewController {
 
-    private lazy var mainView = ProfileEditView()
+    // MARK: - UIComponents
+
+    private lazy var mainView = ProfileEditView(user: user)
 
     private lazy var rightBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(
@@ -20,7 +26,6 @@ final class ProfileEditViewController: BaseViewController {
         )
         return barButtonItem
     }()
-
     private lazy var leftBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(
             title: "취소",
@@ -31,6 +36,24 @@ final class ProfileEditViewController: BaseViewController {
         return barButtonItem
     }()
 
+    // MARK: - Properties
+
+    private var user: User
+    var delegate: ProfileEditViewControllerDelegate?
+
+    // MARK: - Initialize
+
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Methods
+
     override func loadView() {
         self.view = mainView
     }
@@ -40,6 +63,7 @@ final class ProfileEditViewController: BaseViewController {
         navigationController?.navigationBar.tintColor = .systemMint
         navigationItem.rightBarButtonItem = rightBarButtonItem
         navigationItem.leftBarButtonItem = leftBarButtonItem
+        navigationItem.backButtonTitle = ""
     }
 
     override func configureView() {
@@ -48,8 +72,18 @@ final class ProfileEditViewController: BaseViewController {
         mainView.introduceTextField.delegate = self
     }
 
-    @objc func didCompleteButtonTouched(_ sender: UIBarButtonItem) {
+    // MARK: - Actions
 
+    @objc func didCompleteButtonTouched(_ sender: UIBarButtonItem) {
+        guard mainView.nameTextField.text?.isEmpty == false else {
+            print("이름은 공백일 수 없습니다. 에러처리하기")
+            return
+        }
+        user.name = mainView.nameTextField.text
+        user.introduce = mainView.introduceTextField.text
+
+        delegate?.updateUserProfile(user: user)
+        dismiss(animated: true)
     }
 
     @objc func didCancelButtonTouched(_ sender: UIBarButtonItem) {
@@ -66,6 +100,9 @@ extension ProfileEditViewController: UITextFieldDelegate {
                 editType: editType,
                 text: textField.text
             )
+            viewController.completionHandler = {text in
+                textField.text = text
+            }
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
