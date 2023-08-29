@@ -71,17 +71,11 @@ final class OnboardingViewController: UIPageViewController {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
 
-        guard let viewController = UIStoryboard(
-            name: "Main",
-            bundle: nil
-        ).instantiateViewController(
-            withIdentifier: TabBarController.identifier
-        ) as? TabBarController
-        else { return }
+        let viewController = MainViewController()
 
         UserDefaultsManager.isLaunched = true
 
-        sceneDelegate?.window?.rootViewController = viewController
+        sceneDelegate?.window?.rootViewController = TabBarController()
         sceneDelegate?.window?.makeKeyAndVisible()
     }
 }

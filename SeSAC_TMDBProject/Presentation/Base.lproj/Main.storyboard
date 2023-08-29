@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="MainViewController" id="BYZ-38-t0r" customClass="MainViewController" customModule="SeSAC_TMDBProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,18 +57,9 @@
                                 <segment title="First"/>
                                 <segment title="Second"/>
                             </segments>
-                            <connections>
-                                <action selector="didSegmentValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="RxP-x2-byh"/>
-                            </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="ysd-hq-FSN"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="collectionView" destination="06H-P0-2tp" id="ZDJ-ry-jSN"/>
-                        <outlet property="leftBarButtonItem" destination="6fe-Ln-9LU" id="ouy-72-aYi"/>
-                        <outlet property="rightBarButtonItem" destination="ysd-hq-FSN" id="mVi-t2-QOX"/>
-                        <outlet property="segmentControl" destination="tJh-gV-Us7" id="Sv8-9D-vXo"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -179,7 +170,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="OrQ-tr-xDH">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="hzg-dI-IJA" customClass="TabBarController" customModule="SeSAC_TMDBProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="hzg-dI-IJA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="axe-YC-Pdf">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>

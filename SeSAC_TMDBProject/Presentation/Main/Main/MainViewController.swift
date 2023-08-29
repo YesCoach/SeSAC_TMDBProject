@@ -6,13 +6,60 @@
 //
 
 import UIKit
+import SnapKit
 
 final class MainViewController: UIViewController {
 
-    @IBOutlet var leftBarButtonItem: UIBarButtonItem!
-    @IBOutlet var rightBarButtonItem: UIBarButtonItem!
-    @IBOutlet var collectionView: UICollectionView!
-    @IBOutlet var segmentControl: UISegmentedControl!
+    private lazy var leftBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem()
+        barButtonItem.image = .init(systemName: "list.bullet")
+        return barButtonItem
+    }()
+
+    private lazy var rightBarButtonItem: UIBarButtonItem = {
+        let barButtonItem = UIBarButtonItem()
+        barButtonItem.image = .init(systemName: "magnifyingglass")
+        return barButtonItem
+    }()
+
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = .vertical
+
+        let spacing = 0.0
+        let width = UIScreen.main.bounds.width - (spacing * 2)
+        layout.itemSize = .init(width: width , height: width * 1.2)
+
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: layout
+        )
+
+        let nib = UINib(nibName: MainCollectionViewCell.identifier, bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
+        collectionView.dataSource = self
+
+        return collectionView
+    }()
+
+    private lazy var segmentControl: UISegmentedControl = {
+        let segmentControl = UISegmentedControl()
+        segmentControl.addTarget(
+            self,
+            action: #selector(didSegmentValueChanged),
+            for: .valueChanged
+        )
+        for item in mediaTypes.enumerated() {
+            segmentControl.insertSegment(
+                withTitle: item.element.description, at: item.offset, animated: true
+            )
+        }
+        segmentControl.selectedSegmentIndex = 0
+        segmentControl.sizeToFit()
+        return segmentControl
+    }()
 
     private var mediaList: [Media] = [] {
         didSet {
@@ -29,7 +76,7 @@ final class MainViewController: UIViewController {
         fetchData(media: .movie)
     }
 
-    @IBAction func didSegmentValueChanged(_ sender: UISegmentedControl) {
+    @objc func didSegmentValueChanged(_ sender: UISegmentedControl) {
         fetchData(media: mediaTypes[sender.selectedSegmentIndex])
     }
 
@@ -97,39 +144,35 @@ extension MainViewController: UICollectionViewDataSource {
 private extension MainViewController {
 
     func configureUI() {
-        configureCollectionView()
         configureNavigationItem()
-
-        for item in mediaTypes.enumerated() {
-            segmentControl.setTitle(item.element.description, forSegmentAt: item.offset)
-        }
-        segmentControl.sizeToFit()
-
-    }
-
-    func configureCollectionView() {
-        let nib = UINib(nibName: MainCollectionViewCell.identifier, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
-        collectionView.dataSource = self
-
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        layout.scrollDirection = .vertical
-
-        let spacing = 0.0
-        let width = UIScreen.main.bounds.width - (spacing * 2)
-
-        layout.itemSize = .init(width: width , height: width * 1.2)
-
-        collectionView.collectionViewLayout = layout
+        configureLayout()
+        configureTabBarItem()
     }
 
     func configureNavigationItem() {
-        leftBarButtonItem.image = .init(systemName: "list.bullet")
-        rightBarButtonItem.image = .init(systemName: "magnifyingglass")
         navigationController?.navigationBar.tintColor = .systemMint
+        navigationController?.navigationBar.backgroundColor = .systemBackground
         navigationItem.backButtonTitle = ""
+        navigationItem.leftBarButtonItem = leftBarButtonItem
+        navigationItem.rightBarButtonItem = rightBarButtonItem
+        navigationItem.titleView = segmentControl
+    }
+
+    func configureTabBarItem() {
+        tabBarItem.title = "트렌드"
+        tabBarItem.image = .init(systemName: "chart.line.uptrend.xyaxis.circle")
+    }
+
+    func configureLayout() {
+        [
+            collectionView
+        ].forEach {
+            view.addSubview($0)
+        }
+
+        collectionView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 
     func fetchData(media: APIURL.TMDB.MediaType) {

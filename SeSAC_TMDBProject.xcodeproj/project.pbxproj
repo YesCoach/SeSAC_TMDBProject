@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		891A11542A8928CF00D9F64F /* MediaOverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 891A11522A8928CF00D9F64F /* MediaOverviewTableViewCell.swift */; };
 		891A11552A8928CF00D9F64F /* MediaOverviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 891A11532A8928CF00D9F64F /* MediaOverviewTableViewCell.xib */; };
+		895899C32A9DD56200F1BF8B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 895899C22A9DD56200F1BF8B /* SnapKit */; };
+		895899C52A9DDDA300F1BF8B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895899C42A9DDDA300F1BF8B /* TabBarController.swift */; };
 		897E91E72A8CDAAC005083BF /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E91E62A8CDAAC005083BF /* Season.swift */; };
 		897E91E92A8CDB8F005083BF /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E91E82A8CDB8F005083BF /* TV.swift */; };
 		897E91EB2A8CDC65005083BF /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E91EA2A8CDC65005083BF /* Episode.swift */; };
@@ -31,7 +33,6 @@
 		899FA9A42A965F0A009DA937 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9A32A965F0A009DA937 /* MapViewController.swift */; };
 		899FA9BF2A99D45A009DA937 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9BE2A99D45A009DA937 /* OnboardingViewController.swift */; };
 		899FA9C12A99D81C009DA937 /* OnboardingContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9C02A99D81C009DA937 /* OnboardingContentViewController.swift */; };
-		899FA9C52A9A55AF009DA937 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9C42A9A55AF009DA937 /* TabBarController.swift */; };
 		899FA9CA2A9A57AF009DA937 /* UserDefaultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9C92A9A57AF009DA937 /* UserDefaultsManager.swift */; };
 		899FA9CC2A9A57D4009DA937 /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899FA9CB2A9A57D4009DA937 /* UserDefaultsWrapper.swift */; };
 		89AFDA052A87C3020050E9DD /* ViewReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89AFDA042A87C3020050E9DD /* ViewReusable.swift */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		891A11522A8928CF00D9F64F /* MediaOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaOverviewTableViewCell.swift; sourceTree = "<group>"; };
 		891A11532A8928CF00D9F64F /* MediaOverviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaOverviewTableViewCell.xib; sourceTree = "<group>"; };
+		895899C42A9DDDA300F1BF8B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		897E91E62A8CDAAC005083BF /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
 		897E91E82A8CDB8F005083BF /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 		897E91EA2A8CDC65005083BF /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -90,7 +92,6 @@
 		899FA9A32A965F0A009DA937 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		899FA9BE2A99D45A009DA937 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		899FA9C02A99D81C009DA937 /* OnboardingContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContentViewController.swift; sourceTree = "<group>"; };
-		899FA9C42A9A55AF009DA937 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		899FA9C92A9A57AF009DA937 /* UserDefaultsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift; sourceTree = "<group>"; };
 		899FA9CB2A9A57D4009DA937 /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		89AFDA042A87C3020050E9DD /* ViewReusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewReusable.swift; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				89C86E802A8619FA000F1E73 /* Kingfisher in Frameworks */,
+				895899C32A9DD56200F1BF8B /* SnapKit in Frameworks */,
 				89C86E7D2A8619F1000F1E73 /* SwiftyJSON in Frameworks */,
 				89C86E7A2A8619E5000F1E73 /* Alamofire in Frameworks */,
 			);
@@ -137,6 +139,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		895899BE2A9DD28800F1BF8B /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		897E91EC2A8CDD77005083BF /* TV */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,8 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				89C86E642A8617FF000F1E73 /* Main.storyboard */,
-				899FA9C42A9A55AF009DA937 /* TabBarController.swift */,
 				89AFDA042A87C3020050E9DD /* ViewReusable.swift */,
+				895899C42A9DDDA300F1BF8B /* TabBarController.swift */,
 				899FA9BD2A99D39F009DA937 /* Onboarding */,
 				89AFDA032A87C2E60050E9DD /* Main */,
 				899FA9A22A965EF0009DA937 /* Map */,
@@ -280,6 +289,7 @@
 				89C86E842A861ECF000F1E73 /* Domain */,
 				89C86E822A861A94000F1E73 /* Infrastructure */,
 				89AFDA062A87ECBD0050E9DD /* Common */,
+				895899BE2A9DD28800F1BF8B /* Extension */,
 				89C86E672A861801000F1E73 /* Assets.xcassets */,
 				89C86E692A861801000F1E73 /* LaunchScreen.storyboard */,
 				89C86E6C2A861801000F1E73 /* Info.plist */,
@@ -410,6 +420,7 @@
 				89C86E792A8619E5000F1E73 /* Alamofire */,
 				89C86E7C2A8619F1000F1E73 /* SwiftyJSON */,
 				89C86E7F2A8619FA000F1E73 /* Kingfisher */,
+				895899C22A9DD56200F1BF8B /* SnapKit */,
 			);
 			productName = SeSAC_TMDBProject;
 			productReference = 89C86E5B2A8617FF000F1E73 /* SeSAC_TMDBProject.app */;
@@ -443,6 +454,7 @@
 				89C86E782A8619E4000F1E73 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				89C86E7B2A8619F1000F1E73 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				89C86E7E2A8619FA000F1E73 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				895899C12A9DD56200F1BF8B /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 89C86E5C2A8617FF000F1E73 /* Products */;
 			projectDirPath = "";
@@ -505,11 +517,11 @@
 				899FA9BF2A99D45A009DA937 /* OnboardingViewController.swift in Sources */,
 				897E91E92A8CDB8F005083BF /* TV.swift in Sources */,
 				899FA9C12A99D81C009DA937 /* OnboardingContentViewController.swift in Sources */,
+				895899C52A9DDDA300F1BF8B /* TabBarController.swift in Sources */,
 				89C86E8D2A862BEE000F1E73 /* APIHeader.swift in Sources */,
 				89C86E8B2A862300000F1E73 /* APIURL.swift in Sources */,
 				89C86E862A861F41000F1E73 /* Movie.swift in Sources */,
 				897E92252A8E0CD3005083BF /* Crew.swift in Sources */,
-				899FA9C52A9A55AF009DA937 /* TabBarController.swift in Sources */,
 				89C86E932A863C2B000F1E73 /* MovieCredit.swift in Sources */,
 				897E92282A8E42CB005083BF /* CustomCollectionView.swift in Sources */,
 				897E91E72A8CDAAC005083BF /* Season.swift in Sources */,
@@ -740,6 +752,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		895899C12A9DD56200F1BF8B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		89C86E782A8619E4000F1E73 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -767,6 +787,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		895899C22A9DD56200F1BF8B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 895899C12A9DD56200F1BF8B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
 		89C86E792A8619E5000F1E73 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 89C86E782A8619E4000F1E73 /* XCRemoteSwiftPackageReference "Alamofire" */;
