@@ -44,7 +44,6 @@ final class ProfileEditDetailViewController: BaseViewController {
 
     // MARK: - Initializers
 
-
     init(editType: EditType, text: String?) {
         self.editType = editType
         self.text = text
@@ -53,6 +52,11 @@ final class ProfileEditDetailViewController: BaseViewController {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        mainView.inputTextField.becomeFirstResponder()
     }
 
     // MARK: - Methods
