@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
 
     private let mainViewController = MainViewController()
     private let mapViewController = MapViewController()
@@ -16,11 +16,33 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         let viewControllers = [
-            UINavigationController(rootViewController: MainViewController()),
-            UINavigationController(rootViewController: MapViewController())
+            UINavigationController(rootViewController: mainViewController),
+            UINavigationController(rootViewController: mapViewController)
         ]
 
-        view.backgroundColor = .systemBackground
+        mainViewController.tabBarItem = .init(
+            title: "트렌드",
+            image: .init(systemName: "chart.line.uptrend.xyaxis.circle"),
+            selectedImage: .init(systemName: "chart.line.uptrend.xyaxis.circle.fill")
+        )
+
+        mapViewController.tabBarItem = .init(
+            title: "주변 영화관",
+            image: .init(systemName: "mappin.circle"),
+            selectedImage: .init(systemName: "mappin.circle.fill")
+        )
+
         self.viewControllers = viewControllers
+
+        configureUI()
     }
+}
+
+private extension TabBarController {
+
+    func configureUI() {
+        tabBar.tintColor = .systemMint
+        view.backgroundColor = .systemBackground
+    }
+
 }
