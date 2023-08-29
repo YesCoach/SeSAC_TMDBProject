@@ -17,6 +17,9 @@
 		895899CE2A9E0DDB00F1BF8B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895899CD2A9E0DDB00F1BF8B /* ProfileView.swift */; };
 		895899D02A9E2C9700F1BF8B /* ProfileEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895899CF2A9E2C9600F1BF8B /* ProfileEditView.swift */; };
 		895899D22A9E34E200F1BF8B /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895899D12A9E34E200F1BF8B /* ProfileEditViewController.swift */; };
+		895899D62A9E3C5A00F1BF8B /* ProfileEditDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895899D52A9E3C5A00F1BF8B /* ProfileEditDetailViewController.swift */; };
+		895899D82A9E3C6700F1BF8B /* ProfileEditDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895899D72A9E3C6700F1BF8B /* ProfileEditDetailView.swift */; };
+		895899DA2A9E509E00F1BF8B /* UITextField+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895899D92A9E509E00F1BF8B /* UITextField+.swift */; };
 		897E91E72A8CDAAC005083BF /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E91E62A8CDAAC005083BF /* Season.swift */; };
 		897E91E92A8CDB8F005083BF /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E91E82A8CDB8F005083BF /* TV.swift */; };
 		897E91EB2A8CDC65005083BF /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E91EA2A8CDC65005083BF /* Episode.swift */; };
@@ -82,6 +85,9 @@
 		895899CD2A9E0DDB00F1BF8B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		895899CF2A9E2C9600F1BF8B /* ProfileEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditView.swift; sourceTree = "<group>"; };
 		895899D12A9E34E200F1BF8B /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
+		895899D52A9E3C5A00F1BF8B /* ProfileEditDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditDetailViewController.swift; sourceTree = "<group>"; };
+		895899D72A9E3C6700F1BF8B /* ProfileEditDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditDetailView.swift; sourceTree = "<group>"; };
+		895899D92A9E509E00F1BF8B /* UITextField+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+.swift"; sourceTree = "<group>"; };
 		897E91E62A8CDAAC005083BF /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
 		897E91E82A8CDB8F005083BF /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 		897E91EA2A8CDC65005083BF /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 		895899BE2A9DD28800F1BF8B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				895899D92A9E509E00F1BF8B /* UITextField+.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -165,6 +172,8 @@
 				895899CD2A9E0DDB00F1BF8B /* ProfileView.swift */,
 				895899D12A9E34E200F1BF8B /* ProfileEditViewController.swift */,
 				895899CF2A9E2C9600F1BF8B /* ProfileEditView.swift */,
+				895899D52A9E3C5A00F1BF8B /* ProfileEditDetailViewController.swift */,
+				895899D72A9E3C6700F1BF8B /* ProfileEditDetailView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -530,6 +539,7 @@
 				89C86E5F2A8617FF000F1E73 /* AppDelegate.swift in Sources */,
 				89C86E772A86197F000F1E73 /* APIKey.swift in Sources */,
 				891A11542A8928CF00D9F64F /* MediaOverviewTableViewCell.swift in Sources */,
+				895899D82A9E3C6700F1BF8B /* ProfileEditDetailView.swift in Sources */,
 				899FA9CC2A9A57D4009DA937 /* UserDefaultsWrapper.swift in Sources */,
 				89DCCE312A8F7C3900C3AFFE /* MediaSimilarCollectionViewCell.swift in Sources */,
 				89AFDA0D2A88CE200050E9DD /* MediaCastingViewController.swift in Sources */,
@@ -543,10 +553,12 @@
 				895899D22A9E34E200F1BF8B /* ProfileEditViewController.swift in Sources */,
 				89AFDA092A87ECD60050E9DD /* PaddingLabel.swift in Sources */,
 				89C86E962A8641D3000F1E73 /* MainCollectionViewCell.swift in Sources */,
+				895899D62A9E3C5A00F1BF8B /* ProfileEditDetailViewController.swift in Sources */,
 				899FA9BF2A99D45A009DA937 /* OnboardingViewController.swift in Sources */,
 				897E91E92A8CDB8F005083BF /* TV.swift in Sources */,
 				899FA9C12A99D81C009DA937 /* OnboardingContentViewController.swift in Sources */,
 				895899C52A9DDDA300F1BF8B /* TabBarController.swift in Sources */,
+				895899DA2A9E509E00F1BF8B /* UITextField+.swift in Sources */,
 				89C86E8D2A862BEE000F1E73 /* APIHeader.swift in Sources */,
 				89C86E8B2A862300000F1E73 /* APIURL.swift in Sources */,
 				89C86E862A861F41000F1E73 /* Movie.swift in Sources */,

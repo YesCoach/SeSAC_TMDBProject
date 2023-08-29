@@ -42,6 +42,12 @@ final class ProfileEditViewController: BaseViewController {
         navigationItem.leftBarButtonItem = leftBarButtonItem
     }
 
+    override func configureView() {
+        super.configureView()
+        mainView.nameTextField.delegate = self
+        mainView.introduceTextField.delegate = self
+    }
+
     @objc func didCompleteButtonTouched(_ sender: UIBarButtonItem) {
 
     }
@@ -50,4 +56,17 @@ final class ProfileEditViewController: BaseViewController {
         dismiss(animated: true)
     }
 
+}
+
+extension ProfileEditViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.resignFirstResponder()
+        if let editType = EditType(rawValue: textField.tag) {
+            let viewController = ProfileEditDetailViewController(
+                editType: editType,
+                text: textField.text
+            )
+            navigationController?.pushViewController(viewController, animated: true)
+        }
+    }
 }

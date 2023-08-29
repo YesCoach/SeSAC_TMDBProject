@@ -25,24 +25,26 @@ final class ProfileEditView: BaseView {
         return label
     }()
 
-    private lazy var nameTextField: UITextField = {
+    lazy var nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = nameLabel.text
         textField.font = .systemFont(ofSize: 14.0, weight: .regular)
+        textField.tag = EditType.name.rawValue
         return textField
     }()
 
-    private lazy var descriptionLabel: UILabel = {
+    private lazy var introduceLabel: UILabel = {
         let label = UILabel()
         label.text = "소개"
         label.font = .systemFont(ofSize: 14.0, weight: .regular)
         return label
     }()
 
-    private lazy var descriptionTextField: UITextField = {
+    lazy var introduceTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = descriptionLabel.text
+        textField.placeholder = introduceLabel.text
         textField.font = .systemFont(ofSize: 14.0, weight: .regular)
+        textField.tag = EditType.introduce.rawValue
         return textField
     }()
 
@@ -50,7 +52,7 @@ final class ProfileEditView: BaseView {
         super.configureLayout()
 
         [
-            profileView, nameLabel, nameTextField, descriptionLabel, descriptionTextField
+            profileView, nameLabel, nameTextField, introduceLabel, introduceTextField
         ].forEach { addSubview($0) }
 
         profileView.snp.makeConstraints {
@@ -71,15 +73,15 @@ final class ProfileEditView: BaseView {
             $0.trailingMargin.equalToSuperview().inset(20)
         }
 
-        descriptionLabel.snp.makeConstraints {
+        introduceLabel.snp.makeConstraints {
             $0.top.equalTo(nameLabel.snp.bottom).offset(20)
             $0.leadingMargin.equalTo(nameLabel)
             $0.width.equalTo(nameLabel)
         }
 
-        descriptionTextField.snp.makeConstraints {
-            $0.top.equalTo(descriptionLabel)
-            $0.leadingMargin.equalTo(descriptionLabel.snp.trailing).offset(10)
+        introduceTextField.snp.makeConstraints {
+            $0.top.equalTo(introduceLabel)
+            $0.leadingMargin.equalTo(introduceLabel.snp.trailing).offset(10)
             $0.trailingMargin.equalTo(nameTextField)
         }
     }
