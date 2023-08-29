@@ -11,6 +11,8 @@
 		891A11552A8928CF00D9F64F /* MediaOverviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 891A11532A8928CF00D9F64F /* MediaOverviewTableViewCell.xib */; };
 		895899C32A9DD56200F1BF8B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 895899C22A9DD56200F1BF8B /* SnapKit */; };
 		895899C52A9DDDA300F1BF8B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895899C42A9DDDA300F1BF8B /* TabBarController.swift */; };
+		895899C82A9E0A4400F1BF8B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895899C72A9E0A4400F1BF8B /* BaseViewController.swift */; };
+		895899CA2A9E0CFD00F1BF8B /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895899C92A9E0CFD00F1BF8B /* BaseView.swift */; };
 		897E91E72A8CDAAC005083BF /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E91E62A8CDAAC005083BF /* Season.swift */; };
 		897E91E92A8CDB8F005083BF /* TV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E91E82A8CDB8F005083BF /* TV.swift */; };
 		897E91EB2A8CDC65005083BF /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897E91EA2A8CDC65005083BF /* Episode.swift */; };
@@ -70,6 +72,8 @@
 		891A11522A8928CF00D9F64F /* MediaOverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaOverviewTableViewCell.swift; sourceTree = "<group>"; };
 		891A11532A8928CF00D9F64F /* MediaOverviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaOverviewTableViewCell.xib; sourceTree = "<group>"; };
 		895899C42A9DDDA300F1BF8B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		895899C72A9E0A4400F1BF8B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		895899C92A9E0CFD00F1BF8B /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		897E91E62A8CDAAC005083BF /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
 		897E91E82A8CDB8F005083BF /* TV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TV.swift; sourceTree = "<group>"; };
 		897E91EA2A8CDC65005083BF /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -144,6 +148,13 @@
 			children = (
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		895899C62A9E0A0A00F1BF8B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		897E91EC2A8CDD77005083BF /* TV */ = {
@@ -235,6 +246,7 @@
 				899FA9BD2A99D39F009DA937 /* Onboarding */,
 				89AFDA032A87C2E60050E9DD /* Main */,
 				899FA9A22A965EF0009DA937 /* Map */,
+				895899C62A9E0A0A00F1BF8B /* Profile */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -261,6 +273,8 @@
 			children = (
 				89AFDA082A87ECD60050E9DD /* PaddingLabel.swift */,
 				897E92272A8E42CB005083BF /* CustomCollectionView.swift */,
+				895899C72A9E0A4400F1BF8B /* BaseViewController.swift */,
+				895899C92A9E0CFD00F1BF8B /* BaseView.swift */,
 			);
 			path = UIComponent;
 			sourceTree = "<group>";
@@ -497,6 +511,7 @@
 				897E921D2A8E0B90005083BF /* ProductionCompany.swift in Sources */,
 				89C86E912A8639D0000F1E73 /* Cast.swift in Sources */,
 				897E91F92A8D1DB6005083BF /* MediaSeriesTableViewCell.swift in Sources */,
+				895899C82A9E0A4400F1BF8B /* BaseViewController.swift in Sources */,
 				89C86E632A8617FF000F1E73 /* MainViewController.swift in Sources */,
 				899FA9CA2A9A57AF009DA937 /* UserDefaultsManager.swift in Sources */,
 				89C86E5F2A8617FF000F1E73 /* AppDelegate.swift in Sources */,
@@ -523,6 +538,7 @@
 				89C86E862A861F41000F1E73 /* Movie.swift in Sources */,
 				897E92252A8E0CD3005083BF /* Crew.swift in Sources */,
 				89C86E932A863C2B000F1E73 /* MovieCredit.swift in Sources */,
+				895899CA2A9E0CFD00F1BF8B /* BaseView.swift in Sources */,
 				897E92282A8E42CB005083BF /* CustomCollectionView.swift in Sources */,
 				897E91E72A8CDAAC005083BF /* Season.swift in Sources */,
 				897E921B2A8E0A47005083BF /* MovieDetail.swift in Sources */,
