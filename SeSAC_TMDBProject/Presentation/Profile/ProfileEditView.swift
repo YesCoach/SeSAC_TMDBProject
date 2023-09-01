@@ -9,7 +9,7 @@ import UIKit
 
 final class ProfileEditView: BaseView {
 
-    private lazy var profileView: UIImageView = {
+    lazy var profileView: UIImageView = {
         let imageView = UIImageView()
 
         if let profileImageURL = user.profileImageURL,
@@ -22,6 +22,9 @@ final class ProfileEditView: BaseView {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.tintColor = .systemMint
+        imageView.isUserInteractionEnabled = true
+
+        imageView.addGestureRecognizer(tapGesture)
         return imageView
     }()
 
@@ -57,6 +60,8 @@ final class ProfileEditView: BaseView {
         return textField
     }()
 
+    let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer()
+
     private var user: User
 
     init(user: User) {
@@ -76,7 +81,7 @@ final class ProfileEditView: BaseView {
         ].forEach { addSubview($0) }
 
         profileView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide).inset(80)
+            $0.top.equalTo(self.safeAreaLayoutGuide).inset(40)
             $0.width.height.equalTo(180)
             $0.centerX.equalToSuperview()
         }

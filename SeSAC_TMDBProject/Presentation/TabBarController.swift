@@ -9,7 +9,7 @@ import UIKit
 
 final class TabBarController: UITabBarController {
 
-    private let mainViewController = MainViewController()
+    private let mainViewController = TrendingViewController()
     private let mapViewController = MapViewController()
     private let profileViewController = ProfileViewController()
 

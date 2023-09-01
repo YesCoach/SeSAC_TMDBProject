@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  TrendingViewController.swift
 //  SeSAC_TMDBProject
 //
 //  Created by 박태현 on 2023/08/11.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class MainViewController: UIViewController {
+final class TrendingViewController: UIViewController {
 
     private lazy var leftBarButtonItem: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem()
@@ -37,8 +37,8 @@ final class MainViewController: UIViewController {
             collectionViewLayout: layout
         )
 
-        let nib = UINib(nibName: MainCollectionViewCell.identifier, bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: MainCollectionViewCell.identifier)
+        let nib = UINib(nibName: TrendingCollectionViewCell.identifier, bundle: nil)
+        collectionView.register(nib, forCellWithReuseIdentifier: TrendingCollectionViewCell.identifier)
         collectionView.dataSource = self
 
         return collectionView
@@ -83,7 +83,7 @@ final class MainViewController: UIViewController {
 }
 
 // MARK: - UICollectionViewDataSource 구현부
-extension MainViewController: UICollectionViewDataSource {
+extension TrendingViewController: UICollectionViewDataSource {
 
     func collectionView(
         _ collectionView: UICollectionView,
@@ -97,9 +97,9 @@ extension MainViewController: UICollectionViewDataSource {
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: MainCollectionViewCell.identifier,
+            withReuseIdentifier: TrendingCollectionViewCell.identifier,
             for: indexPath
-        ) as? MainCollectionViewCell
+        ) as? TrendingCollectionViewCell
         else { return UICollectionViewCell() }
 
         let media = mediaList[indexPath.row]
@@ -141,7 +141,7 @@ extension MainViewController: UICollectionViewDataSource {
 
 }
 
-private extension MainViewController {
+private extension TrendingViewController {
 
     func configureUI() {
         configureNavigationItem()

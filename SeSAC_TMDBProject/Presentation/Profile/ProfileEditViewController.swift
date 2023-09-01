@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 protocol ProfileEditViewControllerDelegate {
     func updateUserProfile(user: User)
@@ -70,6 +71,8 @@ final class ProfileEditViewController: BaseViewController {
         super.configureView()
         mainView.nameTextField.delegate = self
         mainView.introduceTextField.delegate = self
+        mainView.tapGesture.addTarget(self, action: #selector(didImageTouched))
+        mainView.profileView.addGestureRecognizer(mainView.tapGesture)
     }
 
     // MARK: - Actions
@@ -88,6 +91,13 @@ final class ProfileEditViewController: BaseViewController {
 
     @objc func didCancelButtonTouched(_ sender: UIBarButtonItem) {
         dismiss(animated: true)
+    }
+
+    @objc func didImageTouched(_ sender: UITapGestureRecognizer) {
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .any(of: [.images])
+        let picker = PHPickerViewController(configuration: configuration)
+        present(picker, animated: true)
     }
 
 }

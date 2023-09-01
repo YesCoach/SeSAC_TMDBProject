@@ -1,5 +1,5 @@
 //
-//  MainCollectionViewCell.swift
+//  TrendingCollectionViewCell.swift
 //  SeSAC_TMDBProject
 //
 //  Created by 박태현 on 2023/08/11.
@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-final class MainCollectionViewCell: UICollectionViewCell {
+final class TrendingCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var releaseDateLabel: UILabel!
     @IBOutlet var genreLabel: UILabel!
@@ -59,7 +59,7 @@ final class MainCollectionViewCell: UICollectionViewCell {
 
 // MARK: - Methods
 
-extension MainCollectionViewCell {
+extension TrendingCollectionViewCell {
 
     func configure(with data: Media, completion: @escaping (Media) -> ()) {
         media = data
@@ -93,7 +93,7 @@ extension MainCollectionViewCell {
 
 // MARK: - Private Methods
 
-private extension MainCollectionViewCell {
+private extension TrendingCollectionViewCell {
 
     func configureUI() {
         releaseDateLabel.font = .systemFont(ofSize: 13.0, weight: .regular)

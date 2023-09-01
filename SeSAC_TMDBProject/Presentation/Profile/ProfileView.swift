@@ -87,7 +87,7 @@ final class ProfileView: BaseView {
         ].forEach { addSubview($0) }
 
         profileView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide).inset(80)
+            $0.top.equalTo(self.safeAreaLayoutGuide).inset(40)
             $0.width.height.equalTo(180)
             $0.centerX.equalToSuperview()
         }

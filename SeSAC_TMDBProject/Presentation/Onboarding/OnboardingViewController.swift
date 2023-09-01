@@ -71,7 +71,7 @@ final class OnboardingViewController: UIPageViewController {
         let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
         let sceneDelegate = windowScene?.delegate as? SceneDelegate
 
-        let viewController = MainViewController()
+        let viewController = TrendingViewController()
 
         UserDefaultsManager.isLaunched = true
 
