@@ -7,42 +7,23 @@
 
 import Foundation
 
-// MARK: - TVResult
-
-struct TVResult: Codable {
-    let page: Int
-    let results: [TV]
-    let totalPages, totalResults: Int
-}
-
-extension TVResult {
-
-    enum CodingKeys: String, CodingKey {
-        case page, results
-        case totalPages = "total_pages"
-        case totalResults = "total_results"
-    }
-
-}
-
 // MARK: - TV
-struct TV: Media {
-
+struct TV: TVType {
     let id: Int
     let adult: Bool
     let backdropPath: String?
-    let title: String
-    let originalLanguage: String
-    let originalTitle: String
-    let overview: String
+    let title: String?
+    let originalTitle: String?
+    let overview: String?
     let posterPath: String?
-    let genreIDs: [Int]
+    let genreIDs: [Int]?
     let popularity: Double
-    let releaseDate: String
-    let voteAverage: Double
-    let voteCount: Int
-    let originCountry: [String]
-    let mediaType: APIURL.TMDB.MediaType?
+    let releaseDate: String?
+    let voteAverage: Double?
+    let voteCount: Int?
+    let originCountry: [String]?
+    let originalLanguage: String?
+    let mediaType: APIURL.TMDB.MediaType
 }
 
 extension TV {

@@ -15,7 +15,7 @@ final class MediaSimilarTableViewCell: UITableViewCell {
 
     // MARK: - Properties
 
-    private var dataList: [Media] = [] {
+    private var dataList: [MediaContentsType] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -34,7 +34,7 @@ final class MediaSimilarTableViewCell: UITableViewCell {
 
 extension MediaSimilarTableViewCell {
 
-    func configure(with dataList: [Media]) {
+    func configure(with dataList: [MediaContentsType]) {
         self.dataList = dataList
     }
 

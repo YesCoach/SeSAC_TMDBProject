@@ -11,25 +11,71 @@ final class MediaCastingViewController: UIViewController {
 
     // MARK: - UIComponents
 
-    @IBOutlet var tableView: UITableView!
+    private lazy var tableView: UITableView = {
+        let view = UITableView()
+        view.register(
+            UINib(nibName: MediaCastingTableViewCell.identifier, bundle: nil),
+            forCellReuseIdentifier: MediaCastingTableViewCell.identifier
+        )
+        view.register(
+            UINib(nibName: MediaOverviewTableViewCell.identifier, bundle: nil),
+            forCellReuseIdentifier: MediaOverviewTableViewCell.identifier
+        )
+        view.register(
+            UINib(nibName: MediaSeriesTableViewCell.identifier, bundle: nil),
+            forCellReuseIdentifier: MediaSeriesTableViewCell.identifier
+        )
+        view.register(
+            UINib(nibName: MediaSimilarTableViewCell.identifier, bundle: nil),
+            forCellReuseIdentifier: MediaSimilarTableViewCell.identifier
+        )
+        view.dataSource = self
+        view.delegate = self
+        return view
+    }()
 
     // MARK: HeaderView
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var thumbnailView: UIImageView!
-    @IBOutlet var backgroundImageView: UIImageView!
+
+    private lazy var titleLabel: UILabel = {
+        let view = UILabel()
+        view.text = media.title
+        view.font = .systemFont(ofSize: 28, weight: .bold)
+        view.textColor = .white
+        return view
+    }()
+
+    private lazy var thumbnailView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        if let url = URL(string: media.posterURL) {
+            view.kf.indicatorType = .activity
+            view.kf.setImage(with: url)
+        }
+        return view
+    }()
+
+    private lazy var backgroundImageView: UIImageView = {
+        let view = UIImageView()
+        view.contentMode = .scaleAspectFill
+        if let url = URL(string: media.backdropURL) {
+            view.kf.indicatorType = .activity
+            view.kf.setImage(with: url)
+        }
+        return view
+    }()
 
     // MARK: - Properties
 
-    private let media: Media
-    private var similarArray: [Media] = []
+    private let media: MediaContentsType
+    private var similarArray: [MediaContentsType] = []
     private var seasonArray: [Season] = []
     private var castingList: [Cast] = []
 
     // MARK: - Initializer
 
-    init?(media: Media, coder: NSCoder) {
+    init(media: MediaContentsType) {
         self.media = media
-        super.init(coder: coder)
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -53,45 +99,8 @@ private extension MediaCastingViewController {
     // MARK: UI
 
     func configureUI() {
-        configureTableView()
         configureNavigationItem()
-
-        titleLabel.text = media.title
-        titleLabel.font = .systemFont(ofSize: 28, weight: .bold)
-        titleLabel.textColor = .white
-
-        thumbnailView.contentMode = .scaleAspectFill
-        backgroundImageView.contentMode = .scaleAspectFill
-
-        if let url = URL(string: media.posterURL) {
-            thumbnailView.kf.indicatorType = .activity
-            thumbnailView.kf.setImage(with: url)
-        }
-        if let url = URL(string: media.backdropURL) {
-            backgroundImageView.kf.indicatorType = .activity
-            backgroundImageView.kf.setImage(with: url)
-        }
-    }
-
-    func configureTableView() {
-        tableView.register(
-            UINib(nibName: MediaCastingTableViewCell.identifier, bundle: nil),
-            forCellReuseIdentifier: MediaCastingTableViewCell.identifier
-        )
-        tableView.register(
-            UINib(nibName: MediaOverviewTableViewCell.identifier, bundle: nil),
-            forCellReuseIdentifier: MediaOverviewTableViewCell.identifier
-        )
-        tableView.register(
-            UINib(nibName: MediaSeriesTableViewCell.identifier, bundle: nil),
-            forCellReuseIdentifier: MediaSeriesTableViewCell.identifier
-        )
-        tableView.register(
-            UINib(nibName: MediaSimilarTableViewCell.identifier, bundle: nil),
-            forCellReuseIdentifier: MediaSimilarTableViewCell.identifier
-        )
-        tableView.dataSource = self
-        tableView.delegate = self
+        view.backgroundColor = .systemBackground
     }
 
     func configureNavigationItem() {
@@ -110,7 +119,6 @@ private extension MediaCastingViewController {
                 api: .movieCredit(movieID: media.id)
             ) { [weak self] (data: MovieCredit) in
                 guard let self else { return }
-
                 castingList = data.cast
                 group.leave()
             }
@@ -118,9 +126,8 @@ private extension MediaCastingViewController {
             group.enter()
             NetworkManager.shared.callResponse(
                 api: .movieSimilar(movieID: media.id)
-            ) { [weak self] (data: MovieResult) in
+            ) { [weak self] (data: NetworkResponseData<Movie>) in
                 guard let self else { return }
-
                 similarArray = data.results
                 group.leave()
             }
@@ -137,7 +144,7 @@ private extension MediaCastingViewController {
             group.enter()
             NetworkManager.shared.callResponse(
                 api: .tvSimilar(seriesID: media.id)
-            ) { [weak self] (data: TVResult) in
+            ) { [weak self] (data: NetworkResponseData<TV>) in
                 guard let self else { return }
                 similarArray = data.results
                 group.leave()

@@ -7,45 +7,23 @@
 
 import Foundation
 
-// MARK: - MovieResult
-
-struct MovieResult: MediaResult {
-    let page: Int
-    let results: [Movie]
-    let totalPages: Int
-    let totalResults: Int
-}
-
-extension MovieResult {
-
-    enum CodingKeys: String, CodingKey {
-        case page, results
-        case totalPages = "total_pages"
-        case totalResults = "total_results"
-    }
-
-}
-
 // MARK: - Movie
 
-struct Movie: Media {
+struct Movie: MovieType {
     let id: Int
     let adult: Bool
-    let title: String
-    let originalTitle: String
-    let originalLanguage: String
-    let overview: String
+    let title: String?
+    let originalTitle: String?
+    let originalLanguage: String?
+    let overview: String?
     let posterPath: String?
     let backdropPath: String?
-    let genreIDs: [Int]
+    let genreIDs: [Int]?
     let popularity: Double
-    let releaseDate: String
-    let voteAverage: Double
-    let voteCount: Int
-    let mediaType: APIURL.TMDB.MediaType?
-}
-
-extension Movie {
+    let releaseDate: String?
+    let voteAverage: Double?
+    let voteCount: Int?
+    let mediaType: APIURL.TMDB.MediaType
 
     enum CodingKeys: String, CodingKey {
         case id, title, adult, overview, popularity

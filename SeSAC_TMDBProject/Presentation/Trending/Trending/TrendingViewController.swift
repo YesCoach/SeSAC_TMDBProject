@@ -61,7 +61,7 @@ final class TrendingViewController: UIViewController {
         return segmentControl
     }()
 
-    private var mediaList: [Media] = [] {
+    private var mediaList: [TrendingMedia] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -103,40 +103,12 @@ extension TrendingViewController: UICollectionViewDataSource {
         else { return UICollectionViewCell() }
 
         let media = mediaList[indexPath.row]
-
-        if segmentControl.selectedSegmentIndex == 0 {
-            cell.configure(with: media) { [weak self] media in
-                guard let self else { return }
-                guard let viewController = storyboard?.instantiateViewController(
-                    identifier: MediaCastingViewController.identifier,
-                    creator: { coder in
-                        let viewController = MediaCastingViewController(
-                            media: media,
-                            coder: coder
-                        )
-                        return viewController
-                    }
-                ) else { return }
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-            return cell
-        } else {
-            cell.configure(with: media) { [weak self] media in
-                guard let self else { return }
-                guard let viewController = storyboard?.instantiateViewController(
-                    identifier: MediaCastingViewController.identifier,
-                    creator: { coder in
-                        let viewController = MediaCastingViewController(
-                            media: media,
-                            coder: coder
-                        )
-                        return viewController
-                    }
-                ) else { return }
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-            return cell
+        cell.configure(with: media) { [weak self] media in
+            guard let self else { return }
+            let viewController = MediaCastingViewController(media: media)
+            navigationController?.pushViewController(viewController, animated: true)
         }
+        return cell
     }
 
 }
@@ -147,11 +119,11 @@ private extension TrendingViewController {
         configureNavigationItem()
         configureLayout()
         configureTabBarItem()
+        view.backgroundColor = .systemBackground
     }
 
     func configureNavigationItem() {
         navigationController?.navigationBar.tintColor = .systemMint
-        navigationController?.navigationBar.backgroundColor = .systemBackground
         navigationItem.backButtonTitle = ""
         navigationItem.leftBarButtonItem = leftBarButtonItem
         navigationItem.rightBarButtonItem = rightBarButtonItem
@@ -176,19 +148,11 @@ private extension TrendingViewController {
     }
 
     func fetchData(media: APIURL.TMDB.MediaType) {
-        if media == .movie {
-            NetworkManager.shared.callResponse(
-                api: .trending(media: media, timeWindow: .week)
-            ) { [self] (data: MovieResult) in
-                self.mediaList = data.results
-            }
-        } else {
-            NetworkManager.shared.callResponse(
-                api: .trending(media: media, timeWindow: .week)
-            ) { [self] (data: TVResult) in
-                self.mediaList = data.results
-            }
+        NetworkManager.shared.callResponse(
+            api: .trending(media: media, timeWindow: .week)
+        ) { [weak self] (data: NetworkResponseData<TrendingMedia>) in
+            guard let self else { return }
+            self.mediaList = data.results
         }
     }
-
 }

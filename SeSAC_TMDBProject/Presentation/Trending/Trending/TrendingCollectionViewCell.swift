@@ -26,8 +26,8 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
     @IBOutlet var cardView: UIView!
     @IBOutlet var cardBackView: UIView!
 
-    private var completionHandler: ((Media)->())?
-    private var media: Media?
+    private var completionHandler: ((MediaContentsType)->())?
+    private var media: MediaContentsType?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,8 +50,7 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
     }
 
     @objc func didCardViewTouched(_ sender: UITapGestureRecognizer) {
-        guard let completionHandler, let media
-        else { return }
+        guard let completionHandler, let media else { return }
         completionHandler(media)
     }
 
@@ -61,17 +60,19 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
 
 extension TrendingCollectionViewCell {
 
-    func configure(with data: Media, completion: @escaping (Media) -> ()) {
+    func configure(with data: MediaContentsType, completion: @escaping (MediaContentsType) -> ()) {
         media = data
 
         releaseDateLabel.text = data.releaseDate
 
-        if data.mediaType == .movie {
-            let genreList = data.genreIDs.map { GenreList.movie[$0] }.compactMap { $0 }
-            self.genreLabel.text = "#" + genreList.joined(separator: "#")
-        } else {
-            let genreList = data.genreIDs.map { GenreList.tv[$0] }.compactMap { $0 }
-            self.genreLabel.text = "#" + genreList.joined(separator: "#")
+        if let genreIDs = data.genreIDs {
+            if data.mediaType == .movie {
+                let genreList = genreIDs.map { GenreList.movie[$0] }.compactMap { $0 }
+                self.genreLabel.text = "#" + genreList.joined(separator: "#")
+            } else {
+                let genreList = genreIDs.map { GenreList.tv[$0] }.compactMap { $0 }
+                self.genreLabel.text = "#" + genreList.joined(separator: "#")
+            }
         }
 
         if let url = URL(string: data.posterURL) {
@@ -82,9 +83,13 @@ extension TrendingCollectionViewCell {
             }
         }
 
-        scoreValueLabel.text = String(format: "%.1f", data.voteAverage)
-        titleLabel.text = "\(data.title)"
-        originalTitleLabel.text = "\(data.originalTitle)"
+        if let voteAverage = data.voteAverage {
+            scoreValueLabel.text = String(format: "%.1f", voteAverage)
+        }
+        titleLabel.text = "\(data.title ?? "제목 정보 없음")"
+        if let originalTitle = data.originalTitle {
+            originalTitleLabel.text = "\(originalTitle)"
+        }
         castingLabel.text = "으아아아"
 
         completionHandler = completion

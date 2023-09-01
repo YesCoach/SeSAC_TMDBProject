@@ -39,7 +39,7 @@ final class MediaOverviewTableViewCell: UITableViewCell {
 
 extension MediaOverviewTableViewCell {
 
-    func configure(with overview: String, completion: @escaping (() -> ())) {
+    func configure(with overview: String?, completion: @escaping (() -> ())) {
         overviewLabel.text = overview
         completionHandler = completion
         selectionStyle = .none

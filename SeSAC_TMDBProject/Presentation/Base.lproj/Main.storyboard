@@ -65,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="1864.885496183206" y="-2.1126760563380285"/>
         </scene>
-        <!--Media Casting View Controller-->
+        <!--View Controller-->
         <scene sceneID="Nba-Oq-6CI">
             <objects>
-                <viewController storyboardIdentifier="MediaCastingViewController" id="3xz-s6-yc4" customClass="MediaCastingViewController" customModule="SeSAC_TMDBProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MediaCastingViewController" id="3xz-s6-yc4" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="O3s-k9-gw8">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,12 +121,6 @@
                             <constraint firstItem="dim-UQ-Wce" firstAttribute="trailing" secondItem="6Vn-Qi-cwV" secondAttribute="trailing" id="qd9-AZ-4dO"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="backgroundImageView" destination="5ec-7q-jHa" id="Dd2-Bo-xyp"/>
-                        <outlet property="tableView" destination="6Vn-Qi-cwV" id="3uP-cn-DfF"/>
-                        <outlet property="thumbnailView" destination="E2u-bP-jvp" id="2dk-ng-aaY"/>
-                        <outlet property="titleLabel" destination="dOZ-t7-geI" id="PCF-nv-Xr9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M0P-ea-nAl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
