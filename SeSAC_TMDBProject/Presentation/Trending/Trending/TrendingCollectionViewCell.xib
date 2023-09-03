@@ -55,7 +55,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxL-RR-F2O">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxL-RR-F2O">
                                         <rect key="frame" x="488" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="SPa-Eh-2ms"/>
@@ -168,13 +168,13 @@
             <connections>
                 <outlet property="cardBackView" destination="k4Z-0H-dbC" id="DcZ-L9-jeg"/>
                 <outlet property="cardView" destination="kRa-C3-Z7d" id="SUm-TP-8AH"/>
-                <outlet property="castingLabel" destination="Kx0-zP-pjh" id="H6d-4j-iyF"/>
                 <outlet property="chevronButton" destination="NAp-7V-HrO" id="eVu-5y-L80"/>
                 <outlet property="detailLabel" destination="H5I-CS-Cgf" id="72D-lU-N2j"/>
                 <outlet property="genreLabel" destination="c2v-0W-5xF" id="QVX-3I-Vbj"/>
                 <outlet property="genreStackView" destination="xQJ-wT-J6g" id="eUu-fh-WYd"/>
                 <outlet property="linkButton" destination="pxL-RR-F2O" id="dqf-Un-o3U"/>
                 <outlet property="originalTitleLabel" destination="Hlb-Ej-28J" id="XDo-7v-z9v"/>
+                <outlet property="overviewLabel" destination="Kx0-zP-pjh" id="H6d-4j-iyF"/>
                 <outlet property="posterImageView" destination="BI9-3p-WX0" id="Dfk-wS-fcu"/>
                 <outlet property="releaseDateLabel" destination="UfE-mn-v1O" id="snI-XL-Lpj"/>
                 <outlet property="scoreTitleLabel" destination="nb0-3e-bwa" id="bIp-ot-iIH"/>

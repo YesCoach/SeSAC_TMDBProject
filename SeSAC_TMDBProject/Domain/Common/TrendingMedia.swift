@@ -20,17 +20,19 @@ protocol MediaContentsType: TrendingMediaType {
     var posterPath: String? { get }
     var backdropPath: String? { get }
     var genreIDs: [Int]? { get }
-    var releaseDate: String? { get }
     var voteAverage: Double? { get }
     var voteCount: Int? { get }
     var title: String? { get }
     var originalTitle: String? { get }
 }
 
-protocol MovieType: MediaContentsType { }
+protocol MovieType: MediaContentsType {
+    var releaseDate: String? { get }
+}
 
 protocol TVType: MediaContentsType {
     var originCountry: [String]? { get }
+    var firstOnAirDate: String? { get }
 }
 
 protocol PersonType: TrendingMediaType {
@@ -72,6 +74,7 @@ struct TrendingMedia: PersonType, MovieType, TVType {
     var releaseDate: String?
     var voteAverage: Double?
     var voteCount: Int?
+    var firstOnAirDate: String?
     // TVType
     var originCountry: [String]?
 
@@ -93,7 +96,8 @@ struct TrendingMedia: PersonType, MovieType, TVType {
         case overview
         case posterPath = "poster_path"
         case genreIDs = "genre_ids"
-        case releaseDate = "first_air_date"
+        case releaseDate = "release_date"
+        case firstOnAirDate = "first_air_date"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
         case originCountry = "origin_country"
@@ -115,7 +119,7 @@ extension TrendingMedia {
             return TV(
                 id: id, adult: adult, backdropPath: backdropPath, title: name,
                 originalTitle: originalName, overview: overview, posterPath: posterPath,
-                genreIDs: genreIDs, popularity: popularity, releaseDate: releaseDate,
+                genreIDs: genreIDs, popularity: popularity, firstOnAirDate: firstOnAirDate,
                 voteAverage: voteAverage, voteCount: voteCount, originCountry: originCountry,
                 originalLanguage: originalLanguage, mediaType: mediaType
             )

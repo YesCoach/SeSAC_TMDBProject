@@ -18,7 +18,7 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
     @IBOutlet var scoreValueLabel: PaddingLabel!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var originalTitleLabel: UILabel!
-    @IBOutlet var castingLabel: UILabel!
+    @IBOutlet var overviewLabel: UILabel!
     @IBOutlet var detailLabel: UILabel!
     @IBOutlet var chevronButton: UIButton!
     @IBOutlet var linkButton: UIButton!
@@ -26,8 +26,8 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
     @IBOutlet var cardView: UIView!
     @IBOutlet var cardBackView: UIView!
 
-    private var completionHandler: ((MediaContentsType)->())?
-    private var media: MediaContentsType?
+    private var completionHandler: ((TrendingMedia)->())?
+    private var media: TrendingMedia?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,7 +40,7 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
         posterImageView.image = .init(systemName: "photo.fill")
         scoreValueLabel.text = "0"
         titleLabel.text = "정보 없음"
-        castingLabel.text = nil
+        overviewLabel.text = nil
     }
 
     @IBAction func didChevronButtonTouched(_ sender: Any) {
@@ -60,16 +60,27 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
 
 extension TrendingCollectionViewCell {
 
-    func configure(with data: TrendingMediaType, completion: @escaping (MediaContentsType) -> ()) {
-        guard let data = data as? MediaContentsType else { return }
+    func configure(with data: TrendingMedia, completion: @escaping (MediaContentsType) -> ()) {
         media = data
-        releaseDateLabel.text = data.releaseDate
 
-        if let genreIDs = data.genreIDs {
-            if data.mediaType == .movie {
+        if data.mediaType == .movie {
+            releaseDateLabel.text = data.releaseDate
+            titleLabel.text = "\(data.title ?? "제목 정보 없음")"
+            if let originalTitle = data.originalTitle {
+                originalTitleLabel.text = "\(originalTitle)"
+            }
+            if let genreIDs = data.genreIDs {
                 let genreList = genreIDs.map { GenreList.movie[$0] }.compactMap { $0 }
                 self.genreLabel.text = "#" + genreList.joined(separator: "#")
-            } else {
+            }
+
+        } else {
+            releaseDateLabel.text = data.firstOnAirDate
+            titleLabel.text = "\(data.name ?? "제목 정보 없음")"
+            if let originalName = data.originalName {
+                originalTitleLabel.text = "\(originalName)"
+            }
+            if let genreIDs = data.genreIDs {
                 let genreList = genreIDs.map { GenreList.tv[$0] }.compactMap { $0 }
                 self.genreLabel.text = "#" + genreList.joined(separator: "#")
             }
@@ -86,12 +97,8 @@ extension TrendingCollectionViewCell {
         if let voteAverage = data.voteAverage {
             scoreValueLabel.text = String(format: "%.1f", voteAverage)
         }
-        titleLabel.text = "\(data.title ?? "제목 정보 없음")"
-        if let originalTitle = data.originalTitle {
-            originalTitleLabel.text = "\(originalTitle)"
-        }
-        castingLabel.text = "으아아아"
 
+        overviewLabel.text = data.overview
         completionHandler = completion
     }
 }
@@ -118,8 +125,8 @@ private extension TrendingCollectionViewCell {
         originalTitleLabel.font = .systemFont(ofSize: 15.0, weight: .regular)
         originalTitleLabel.textColor = .black
 
-        castingLabel.font = .systemFont(ofSize: 14.0, weight: .regular)
-        castingLabel.textColor = .systemGray
+        overviewLabel.font = .systemFont(ofSize: 14.0, weight: .regular)
+        overviewLabel.textColor = .systemGray
         detailLabel.font = .systemFont(ofSize: 13.0, weight: .regular)
         detailLabel.textColor = .black
         detailLabel.text = "자세히 보기"

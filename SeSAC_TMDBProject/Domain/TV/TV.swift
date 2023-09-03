@@ -18,7 +18,7 @@ struct TV: TVType {
     let posterPath: String?
     let genreIDs: [Int]?
     let popularity: Double
-    let releaseDate: String?
+    let firstOnAirDate: String?
     let voteAverage: Double?
     let voteCount: Int?
     let originCountry: [String]?
@@ -39,7 +39,7 @@ extension TV {
         case posterPath = "poster_path"
         case genreIDs = "genre_ids"
         case popularity
-        case releaseDate = "first_air_date"
+        case firstOnAirDate = "first_air_date"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
         case originCountry = "origin_country"

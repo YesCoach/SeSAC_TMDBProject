@@ -28,6 +28,7 @@ extension NetworkManager {
                 switch response.result {
                 case .success(let data):
                     completionHandler(data)
+                    debugPrint(data)
                 case .failure(let error):
                     print(url)
                     debugPrint(error)
