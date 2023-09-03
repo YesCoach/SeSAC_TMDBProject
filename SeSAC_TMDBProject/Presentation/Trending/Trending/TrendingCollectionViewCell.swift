@@ -127,6 +127,8 @@ private extension TrendingCollectionViewCell {
 
         overviewLabel.font = .systemFont(ofSize: 14.0, weight: .regular)
         overviewLabel.textColor = .systemGray
+        overviewLabel.numberOfLines = 0
+
         detailLabel.font = .systemFont(ofSize: 13.0, weight: .regular)
         detailLabel.textColor = .black
         detailLabel.text = "자세히 보기"

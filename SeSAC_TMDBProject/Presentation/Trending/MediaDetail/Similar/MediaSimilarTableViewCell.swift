@@ -101,7 +101,7 @@ extension MediaSimilarTableViewCell: UICollectionViewDataSource {
         else { return UICollectionViewCell() }
 
         let data = dataList[indexPath.row]
-        cell.configure(with: data)
+        cell.configure(with: data.posterURL)
 
         return cell
     }

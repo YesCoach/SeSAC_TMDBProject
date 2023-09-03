@@ -80,3 +80,15 @@ struct Work: Codable {
         case originCountry = "origin_country"
     }
 }
+
+extension Work {
+    /// posterPath를 적용한 이미지 URL을 반환합니다.
+    var posterURL: String {
+        return "https://image.tmdb.org/t/p/original\(posterPath ?? "")"
+    }
+
+    /// backdropPath를 적용한 이미지 URL을 반환합니다.
+    var backdropURL: String {
+        return "https://image.tmdb.org/t/p/original\(backdropPath ?? "")"
+    }
+}

@@ -32,8 +32,8 @@ final class MediaSimilarCollectionViewCell: UICollectionViewCell {
 
 extension MediaSimilarCollectionViewCell {
 
-    func configure(with data: MediaContentsType) {
-        if let url = URL(string: data.posterURL) {
+    func configure(with imageURL: String) {
+        if let url = URL(string: imageURL) {
             posterImageView.kf.setImage(with: url)
         }
     }
