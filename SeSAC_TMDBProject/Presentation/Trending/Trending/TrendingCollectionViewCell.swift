@@ -60,7 +60,7 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
 
 extension TrendingCollectionViewCell {
 
-    func configure(with data: TrendingMedia, completion: @escaping (MediaContentsType) -> ()) {
+    func configure(with data: TrendingMedia, completion: @escaping (TrendingMedia) -> ()) {
         media = data
 
         if data.mediaType == .movie {

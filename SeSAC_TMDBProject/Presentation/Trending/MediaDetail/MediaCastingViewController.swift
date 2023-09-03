@@ -45,14 +45,14 @@ final class MediaCastingViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let media: MediaContentsType
+    private let media: TrendingMedia
     private var similarArray: [MediaContentsType] = []
     private var seasonArray: [Season] = []
     private var castingList: [Cast] = []
 
     // MARK: - Initializer
 
-    init(media: MediaContentsType) {
+    init(media: TrendingMedia) {
         self.media = media
         super.init(nibName: nil, bundle: nil)
     }

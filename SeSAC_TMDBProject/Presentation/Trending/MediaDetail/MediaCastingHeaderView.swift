@@ -11,7 +11,7 @@ final class MediaCastingHeaderView: UIView {
 
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
-        view.text = media.title
+        view.text = media.mediaType == .movie ? media.title : media.name
         view.font = .systemFont(ofSize: 28, weight: .bold)
         view.textColor = .white
         return view
@@ -37,9 +37,9 @@ final class MediaCastingHeaderView: UIView {
         return view
     }()
 
-    private let media: MediaContentsType
+    private let media: TrendingMedia
 
-    init(media: MediaContentsType) {
+    init(media: TrendingMedia) {
         self.media = media
         super.init(frame: .zero)
         configureUI()
