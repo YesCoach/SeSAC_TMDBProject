@@ -34,9 +34,7 @@ extension MediaSimilarCollectionViewCell {
 
     func configure(with data: MediaContentsType) {
         if let url = URL(string: data.posterURL) {
-            posterImageView.kf.setImage(
-                with: url
-            )
+            posterImageView.kf.setImage(with: url)
         }
     }
 
@@ -49,6 +47,7 @@ private extension MediaSimilarCollectionViewCell {
     func configureUI() {
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.tintColor = .gray
+        posterImageView.backgroundColor = .lightGray
         posterImageView.kf.indicatorType = .activity
         posterImageView.image = .init(systemName: "photo")
         contentView.layer.cornerRadius = 10.0

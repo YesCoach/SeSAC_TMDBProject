@@ -118,7 +118,7 @@ private extension MediaCastingViewController {
                 api: .movieSimilar(movieID: media.id)
             ) { [weak self] (data: NetworkResponseData<Movie>) in
                 guard let self else { return }
-                similarArray = data.results
+                similarArray = data.results.filter { $0.posterPath != nil }
                 group.leave()
             }
         case .tv:

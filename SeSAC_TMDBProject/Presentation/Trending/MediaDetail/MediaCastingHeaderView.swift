@@ -73,9 +73,8 @@ private extension MediaCastingHeaderView {
         thumbnailView.snp.makeConstraints {
             $0.leading.equalTo(titleLabel).offset(5)
             $0.bottom.equalTo(self).inset(10)
-            $0.width.equalTo(80)
-            $0.height.equalTo(80)
-//            $0.width.equalTo(thumbnailView.snp.height).multipliedBy(2/3)
+            $0.height.equalTo(self.snp.height).multipliedBy(0.65)
+            $0.width.equalTo(thumbnailView.snp.height).multipliedBy(0.6)
         }
     }
 }
