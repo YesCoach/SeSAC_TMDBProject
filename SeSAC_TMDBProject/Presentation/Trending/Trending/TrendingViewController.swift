@@ -103,7 +103,8 @@ extension TrendingViewController: UICollectionViewDataSource {
         else { return UICollectionViewCell() }
 
         let media = mediaList[indexPath.row]
-        cell.configure(with: media) { [weak self] media in
+        let data = media.getConcreteModel()
+        cell.configure(with: data) { [weak self] media in
             guard let self else { return }
             let viewController = MediaCastingViewController(media: media)
             navigationController?.pushViewController(viewController, animated: true)

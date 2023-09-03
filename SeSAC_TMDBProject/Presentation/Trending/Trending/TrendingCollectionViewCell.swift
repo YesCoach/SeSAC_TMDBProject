@@ -60,9 +60,9 @@ final class TrendingCollectionViewCell: UICollectionViewCell {
 
 extension TrendingCollectionViewCell {
 
-    func configure(with data: MediaContentsType, completion: @escaping (MediaContentsType) -> ()) {
+    func configure(with data: TrendingMediaType, completion: @escaping (MediaContentsType) -> ()) {
+        guard let data = data as? MediaContentsType else { return }
         media = data
-
         releaseDateLabel.text = data.releaseDate
 
         if let genreIDs = data.genreIDs {

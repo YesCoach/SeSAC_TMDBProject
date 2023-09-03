@@ -23,7 +23,7 @@ struct TV: TVType {
     let voteCount: Int?
     let originCountry: [String]?
     let originalLanguage: String?
-    let mediaType: APIURL.TMDB.MediaType
+    let mediaType: MediaType?
 }
 
 extension TV {

@@ -7,21 +7,14 @@
 
 import Foundation
 
-protocol MediaType: Codable {
+protocol TrendingMediaType: Codable {
     var id: Int { get }
     var adult: Bool { get }
     var popularity: Double { get }
-    var mediaType: APIURL.TMDB.MediaType { get }
+    var mediaType: MediaType? { get }
 }
-protocol PersonType: MediaType {
-    var gender: Int? { get }
-    var knownForDepartment: String? { get }
-    var profilePath: String? { get }
-    var knownFor: [Work]? { get }
-    var name: String? { get }
-    var originalName: String? { get }
-}
-protocol MediaContentsType: MediaType {
+
+protocol MediaContentsType: TrendingMediaType {
     var originalLanguage: String? { get }
     var overview: String? { get }
     var posterPath: String? { get }
@@ -33,9 +26,26 @@ protocol MediaContentsType: MediaType {
     var title: String? { get }
     var originalTitle: String? { get }
 }
+
 protocol MovieType: MediaContentsType { }
+
 protocol TVType: MediaContentsType {
     var originCountry: [String]? { get }
+}
+
+protocol PersonType: TrendingMediaType {
+    var gender: Int? { get }
+    var knownForDepartment: String? { get }
+    var profilePath: String? { get }
+    var knownFor: [Work]? { get }
+    var name: String? { get }
+    var originalName: String? { get }
+}
+
+enum MediaType: String, Codable {
+    case movie
+    case tv
+    case person
 }
 
 struct TrendingMedia: PersonType, MovieType, TVType {
@@ -43,7 +53,7 @@ struct TrendingMedia: PersonType, MovieType, TVType {
     var id: Int
     var adult: Bool
     var popularity: Double
-    var mediaType: APIURL.TMDB.MediaType
+    var mediaType: MediaType?
     // PersonType
     var name: String?
     var originalName: String?
@@ -88,6 +98,36 @@ struct TrendingMedia: PersonType, MovieType, TVType {
         case voteCount = "vote_count"
         case originCountry = "origin_country"
     }
+}
+
+extension TrendingMedia {
+
+    func getConcreteModel() -> TrendingMediaType {
+        if mediaType == .movie {
+            return Movie(
+                id: id, adult: adult, title: title, originalTitle: originalTitle,
+                originalLanguage: originalLanguage, overview: overview, posterPath: posterPath,
+                backdropPath: backdropPath, genreIDs: genreIDs, popularity: popularity,
+                releaseDate: releaseDate, voteAverage: voteAverage, voteCount: voteCount,
+                mediaType: mediaType
+            )
+        } else if mediaType == .tv {
+            return TV(
+                id: id, adult: adult, backdropPath: backdropPath, title: name,
+                originalTitle: originalName, overview: overview, posterPath: posterPath,
+                genreIDs: genreIDs, popularity: popularity, releaseDate: releaseDate,
+                voteAverage: voteAverage, voteCount: voteCount, originCountry: originCountry,
+                originalLanguage: originalLanguage, mediaType: mediaType
+            )
+        } else {
+            return Person(
+                adult: adult, id: id, name: name, originalName: originalName,
+                popularity: popularity, gender: gender, knownForDepartment: knownForDepartment,
+                profilePath: profilePath, knownFor: knownFor, mediaType: mediaType
+            )
+        }
+    }
+
 }
 
 extension MediaContentsType {

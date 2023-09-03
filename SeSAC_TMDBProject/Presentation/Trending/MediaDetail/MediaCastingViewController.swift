@@ -31,36 +31,15 @@ final class MediaCastingViewController: UIViewController {
         )
         view.dataSource = self
         view.delegate = self
+        view.tableHeaderView = headerView
+        view.tableHeaderView?.frame = .init(x: 0, y: 0, width: view.frame.width, height: 300)
         return view
     }()
 
     // MARK: HeaderView
 
-    private lazy var titleLabel: UILabel = {
-        let view = UILabel()
-        view.text = media.title
-        view.font = .systemFont(ofSize: 28, weight: .bold)
-        view.textColor = .white
-        return view
-    }()
-
-    private lazy var thumbnailView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        if let url = URL(string: media.posterURL) {
-            view.kf.indicatorType = .activity
-            view.kf.setImage(with: url)
-        }
-        return view
-    }()
-
-    private lazy var backgroundImageView: UIImageView = {
-        let view = UIImageView()
-        view.contentMode = .scaleAspectFill
-        if let url = URL(string: media.backdropURL) {
-            view.kf.indicatorType = .activity
-            view.kf.setImage(with: url)
-        }
+    private lazy var headerView: MediaCastingHeaderView = {
+        let view = MediaCastingHeaderView(media: media)
         return view
     }()
 
@@ -100,11 +79,22 @@ private extension MediaCastingViewController {
 
     func configureUI() {
         configureNavigationItem()
+        configureLayout()
         view.backgroundColor = .systemBackground
     }
 
     func configureNavigationItem() {
         navigationItem.title = "출연/제작"
+    }
+
+    func configureLayout() {
+        [
+            tableView
+        ].forEach { view.addSubview($0) }
+
+        tableView.snp.makeConstraints {
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 
     // MARK: - Logic

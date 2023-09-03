@@ -21,15 +21,16 @@ struct PersonResult: Codable {
 }
 
 // MARK: - Result
-struct Person: Codable {
-    var adult: Bool?
-    var id: Int?
-    var name, originalName, mediaType: String?
-    var popularity: Double?
+struct Person: PersonType {
+    var adult: Bool
+    var id: Int
+    var name, originalName: String?
+    var popularity: Double
     var gender: Int?
     var knownForDepartment: String?
     var profilePath: String?
     var knownFor: [Work]?
+    var mediaType: MediaType?
 
     enum CodingKeys: String, CodingKey {
         case adult, id, name

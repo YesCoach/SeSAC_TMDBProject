@@ -23,7 +23,7 @@ struct Movie: MovieType {
     let releaseDate: String?
     let voteAverage: Double?
     let voteCount: Int?
-    let mediaType: APIURL.TMDB.MediaType
+    let mediaType: MediaType?
 
     enum CodingKeys: String, CodingKey {
         case id, title, adult, overview, popularity
